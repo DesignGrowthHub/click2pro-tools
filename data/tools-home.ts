@@ -1223,7 +1223,7 @@ export const trustCards: TrustCard[] = [
     title: "Sutter Health",
     meta: "Care network",
     media: {
-      src: "/logos/Sutter-Health.png",
+      src: "/tools/logos/Sutter-Health.png",
       alt: "Sutter Health logo",
       label: "Sutter Health",
       ratio: "16 / 9",
@@ -1235,7 +1235,7 @@ export const trustCards: TrustCard[] = [
     title: "Cedars-Sinai",
     meta: "Medical center",
     media: {
-      src: "/logos/cedars-sinai.png",
+      src: "/tools/logos/cedars-sinai.png",
       alt: "Cedars-Sinai logo",
       label: "Cedars-Sinai",
       ratio: "16 / 9",
@@ -1247,7 +1247,7 @@ export const trustCards: TrustCard[] = [
     title: "Cleveland Clinic",
     meta: "Clinical system",
     media: {
-      src: "/logos/cleveland-clinic.png",
+      src: "/tools/logos/cleveland-clinic.png",
       alt: "Cleveland Clinic logo",
       label: "Cleveland Clinic",
       ratio: "16 / 9",
@@ -1259,7 +1259,7 @@ export const trustCards: TrustCard[] = [
     title: "Johns Hopkins",
     meta: "Medical institution",
     media: {
-      src: "/logos/johns-hopkins.png",
+      src: "/tools/logos/johns-hopkins.png",
       alt: "Johns Hopkins logo",
       label: "Johns Hopkins",
       ratio: "16 / 9",
@@ -1271,7 +1271,7 @@ export const trustCards: TrustCard[] = [
     title: "Kaiser Permanente",
     meta: "Care system",
     media: {
-      src: "/logos/kaiser.png",
+      src: "/tools/logos/kaiser.png",
       alt: "Kaiser Permanente logo",
       label: "Kaiser Permanente",
       ratio: "16 / 9",
@@ -1283,7 +1283,7 @@ export const trustCards: TrustCard[] = [
     title: "Mayo Clinic",
     meta: "Care institution",
     media: {
-      src: "/logos/mayo-clinic.png",
+      src: "/tools/logos/mayo-clinic.png",
       alt: "Mayo Clinic logo",
       label: "Mayo Clinic",
       ratio: "16 / 9",
@@ -1364,7 +1364,7 @@ export const securityCards: SecurityCard[] = [
     description: "Basic privacy protections are in place so reflective use stays calmer and less exposed.",
     icon: "privacy",
     media: {
-      src: "/security/privacy-protected.png",
+      src: "/tools/security/privacy-protected.png",
       alt: "Privacy protected badge",
       label: "Privacy protected",
       ratio: "16 / 10",
@@ -1376,7 +1376,7 @@ export const securityCards: SecurityCard[] = [
     description: "The connection is protected so the site feels safer to use when a topic is personal.",
     icon: "lock",
     media: {
-      src: "/security/ssl-secure.png",
+      src: "/tools/security/ssl-secure.png",
       alt: "SSL secure badge",
       label: "SSL secure",
       ratio: "16 / 10",
@@ -1388,7 +1388,7 @@ export const securityCards: SecurityCard[] = [
     description: "Encrypted handling helps keep ordinary site traffic protected while you use the tools.",
     icon: "shield",
     media: {
-      src: "/security/encrypted.png",
+      src: "/tools/security/encrypted.png",
       alt: "Encrypted badge",
       label: "Encrypted",
       ratio: "16 / 10",
@@ -1400,7 +1400,7 @@ export const securityCards: SecurityCard[] = [
     description: "Payment handling is set up with standard protections so paid access can feel more trustworthy.",
     icon: "structure",
     media: {
-      src: "/security/secure-payment.png",
+      src: "/tools/security/secure-payment.png",
       alt: "Secure payment badge",
       label: "Secure payment",
       ratio: "16 / 10",
