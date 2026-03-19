@@ -11,6 +11,7 @@ import {
   type DrainAreaValue,
 } from "@/data/burnout-risk-audit";
 import { ChevronRightIcon } from "@/components/tools/icons";
+import { scrollToolViewportNodeIntoView } from "@/components/tools/experience-scroll";
 import styles from "./burnout-risk-audit.module.css";
 import { LiveSignalPreview } from "./live-signal-preview";
 import { MultiSelectChips } from "./multi-select-chips";
@@ -25,19 +26,6 @@ import { StepCard } from "./step-card";
 import { MetricDial } from "./metric-dial";
 import { ToolShell } from "./tool-shell";
 
-function scrollNodeIntoView(node: HTMLElement | null) {
-  if (!node) {
-    return;
-  }
-
-  const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  node.scrollIntoView({
-    behavior: shouldReduceMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
-
 function getAnsweredStepCount(answers: BurnoutAnswers) {
   return burnoutAuditSteps.filter((step) => isBurnoutStepComplete(step, answers)).length;
 }
@@ -48,6 +36,8 @@ export function BurnoutAuditExperience() {
   const [showResult, setShowResult] = useState(false);
   const toolSectionRef = useRef<HTMLElement | null>(null);
   const resultSectionRef = useRef<HTMLDivElement | null>(null);
+  const activeStepRef = useRef<HTMLDivElement | null>(null);
+  const previousStepIndexRef = useRef(0);
 
   const currentStep = burnoutAuditSteps[currentStepIndex];
   const result = calculateBurnoutAudit(answers);
@@ -57,9 +47,21 @@ export function BurnoutAuditExperience() {
 
   useEffect(() => {
     if (showResult) {
-      scrollNodeIntoView(resultSectionRef.current);
+      scrollToolViewportNodeIntoView(resultSectionRef.current);
     }
   }, [showResult]);
+
+  useEffect(() => {
+    if (showResult) {
+      return;
+    }
+
+    if (previousStepIndexRef.current !== currentStepIndex) {
+      scrollToolViewportNodeIntoView(activeStepRef.current, "step");
+    }
+
+    previousStepIndexRef.current = currentStepIndex;
+  }, [currentStepIndex, showResult]);
 
   function updateAnswer<Key extends keyof BurnoutAnswers>(field: Key, value: BurnoutAnswers[Key]) {
     setAnswers((current) => ({
@@ -113,7 +115,8 @@ export function BurnoutAuditExperience() {
     setAnswers(getInitialBurnoutAnswers());
     setCurrentStepIndex(0);
     setShowResult(false);
-    scrollNodeIntoView(toolSectionRef.current);
+    previousStepIndexRef.current = 0;
+    scrollToolViewportNodeIntoView(toolSectionRef.current);
   }
 
   function renderCurrentStep(step: BurnoutAuditStep) {
@@ -222,7 +225,7 @@ export function BurnoutAuditExperience() {
             />
 
             <div className={styles.toolContentArea}>
-              <div className={styles.toolStepTransition} key={currentStep.id}>
+              <div className={styles.toolStepTransition} key={currentStep.id} ref={activeStepRef}>
                 <StepCard eyebrow={currentStep.eyebrow} hint={currentStep.hint} question={currentStep.question}>
                   {renderCurrentStep(currentStep)}
                 </StepCard>

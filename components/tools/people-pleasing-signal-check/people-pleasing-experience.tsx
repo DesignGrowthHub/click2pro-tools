@@ -12,6 +12,7 @@ import {
   type PleasingDriverKey,
 } from "@/data/people-pleasing-signal-check";
 import { ChevronRightIcon } from "@/components/tools/icons";
+import { scrollToolViewportNodeIntoView } from "@/components/tools/experience-scroll";
 import styles from "./people-pleasing-signal-check.module.css";
 import { DragRankList } from "./drag-rank-list";
 import { HiddenCostPanel } from "./hidden-cost-panel";
@@ -28,19 +29,6 @@ import { ToolShell } from "./tool-shell";
 import { WeakZoneMap } from "./weak-zone-map";
 import { MultiSelectChips } from "./multi-select-chips";
 
-function scrollNodeIntoView(node: HTMLElement | null) {
-  if (!node) {
-    return;
-  }
-
-  const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  node.scrollIntoView({
-    behavior: shouldReduceMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
-
 function getAnsweredStepCount(answers: PeoplePleasingAnswers) {
   return peoplePleasingSteps.filter((step) => isPeoplePleasingStepComplete(step, answers)).length;
 }
@@ -51,6 +39,8 @@ export function PeoplePleasingExperience() {
   const [showResult, setShowResult] = useState(false);
   const toolSectionRef = useRef<HTMLElement | null>(null);
   const resultSectionRef = useRef<HTMLDivElement | null>(null);
+  const activeStepRef = useRef<HTMLDivElement | null>(null);
+  const previousStepIndexRef = useRef(0);
 
   const currentStep = peoplePleasingSteps[currentStepIndex];
   const result = calculatePeoplePleasingResult(answers);
@@ -60,9 +50,21 @@ export function PeoplePleasingExperience() {
 
   useEffect(() => {
     if (showResult) {
-      scrollNodeIntoView(resultSectionRef.current);
+      scrollToolViewportNodeIntoView(resultSectionRef.current);
     }
   }, [showResult]);
+
+  useEffect(() => {
+    if (showResult) {
+      return;
+    }
+
+    if (previousStepIndexRef.current !== currentStepIndex) {
+      scrollToolViewportNodeIntoView(activeStepRef.current, "step");
+    }
+
+    previousStepIndexRef.current = currentStepIndex;
+  }, [currentStepIndex, showResult]);
 
   function updateAnswer<Key extends keyof PeoplePleasingAnswers>(field: Key, value: PeoplePleasingAnswers[Key]) {
     setAnswers((current) => ({
@@ -131,7 +133,8 @@ export function PeoplePleasingExperience() {
     setAnswers(getInitialPeoplePleasingAnswers());
     setCurrentStepIndex(0);
     setShowResult(false);
-    scrollNodeIntoView(toolSectionRef.current);
+    previousStepIndexRef.current = 0;
+    scrollToolViewportNodeIntoView(toolSectionRef.current);
   }
 
   function renderCurrentStep(step: PeoplePleasingStep) {
@@ -274,7 +277,7 @@ export function PeoplePleasingExperience() {
             />
 
             <div className={styles.toolContentArea}>
-              <div className={styles.stepTransition} key={currentStep.id}>
+              <div className={styles.stepTransition} key={currentStep.id} ref={activeStepRef}>
                 <StepCard eyebrow={currentStep.eyebrow} hint={currentStep.hint} question={currentStep.question}>
                   {renderCurrentStep(currentStep)}
                 </StepCard>

@@ -14,6 +14,7 @@ import {
   type RankItemKey,
 } from "@/data/rejection-trigger-decoder";
 import { ChevronRightIcon } from "@/components/tools/icons";
+import { scrollToolViewportNodeIntoView } from "@/components/tools/experience-scroll";
 import styles from "./emotional-trigger-decoder.module.css";
 import { DragRankList } from "./drag-rank-list";
 import { LiveDecoderPreview } from "./live-decoder-preview";
@@ -30,19 +31,6 @@ import { StepCard } from "./step-card";
 import { ToolShell } from "./tool-shell";
 import { TriggerClusterMap } from "./trigger-cluster-map";
 
-function scrollNodeIntoView(node: HTMLElement | null) {
-  if (!node) {
-    return;
-  }
-
-  const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  node.scrollIntoView({
-    behavior: shouldReduceMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
-
 function getAnsweredStepCount(answers: TriggerAnswers) {
   return triggerSteps.filter((step) => isTriggerStepComplete(step, answers)).length;
 }
@@ -53,6 +41,8 @@ export function EmotionalTriggerExperience() {
   const [showResult, setShowResult] = useState(false);
   const toolSectionRef = useRef<HTMLElement | null>(null);
   const resultSectionRef = useRef<HTMLDivElement | null>(null);
+  const activeStepRef = useRef<HTMLDivElement | null>(null);
+  const previousStepIndexRef = useRef(0);
 
   const currentStep = triggerSteps[currentStepIndex];
   const result = calculateEmotionalTriggerResult(answers);
@@ -62,9 +52,21 @@ export function EmotionalTriggerExperience() {
 
   useEffect(() => {
     if (showResult) {
-      scrollNodeIntoView(resultSectionRef.current);
+      scrollToolViewportNodeIntoView(resultSectionRef.current);
     }
   }, [showResult]);
+
+  useEffect(() => {
+    if (showResult) {
+      return;
+    }
+
+    if (previousStepIndexRef.current !== currentStepIndex) {
+      scrollToolViewportNodeIntoView(activeStepRef.current, "step");
+    }
+
+    previousStepIndexRef.current = currentStepIndex;
+  }, [currentStepIndex, showResult]);
 
   function updateAnswer<Key extends keyof TriggerAnswers>(field: Key, value: TriggerAnswers[Key]) {
     setAnswers((current) => ({
@@ -134,7 +136,8 @@ export function EmotionalTriggerExperience() {
     setAnswers(getInitialTriggerAnswers());
     setCurrentStepIndex(0);
     setShowResult(false);
-    scrollNodeIntoView(toolSectionRef.current);
+    previousStepIndexRef.current = 0;
+    scrollToolViewportNodeIntoView(toolSectionRef.current);
   }
 
   function renderCurrentStep(step: TriggerStep) {
@@ -264,7 +267,7 @@ export function EmotionalTriggerExperience() {
             />
 
             <div className={styles.toolContentArea}>
-              <div className={styles.stepTransition} key={currentStep.id}>
+              <div className={styles.stepTransition} key={currentStep.id} ref={activeStepRef}>
                 <StepCard eyebrow={currentStep.eyebrow} hint={currentStep.hint} question={currentStep.question}>
                   {renderCurrentStep(currentStep)}
                 </StepCard>

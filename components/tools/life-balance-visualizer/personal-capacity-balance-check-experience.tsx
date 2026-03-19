@@ -11,6 +11,7 @@ import {
   type BalanceDomain,
 } from "@/data/personal-capacity-balance-check";
 import { ChevronRightIcon } from "@/components/tools/icons";
+import { scrollToolViewportNodeIntoView } from "@/components/tools/experience-scroll";
 import styles from "./life-balance-visualizer.module.css";
 import { BalanceWheel } from "./balance-wheel";
 import { ComparisonBars } from "./comparison-bars";
@@ -20,19 +21,6 @@ import { ProgressHeader } from "./progress-header";
 import { RecoveryCapacityPanel } from "./recovery-capacity-panel";
 import { ResultReveal } from "./result-reveal";
 import { ToolShell } from "./tool-shell";
-
-function scrollNodeIntoView(node: HTMLElement | null) {
-  if (!node) {
-    return;
-  }
-
-  const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  node.scrollIntoView({
-    behavior: shouldReduceMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
 
 function getAnsweredDomainCount(answers: BalanceAnswers) {
   return balanceDomains.filter((domain) => isBalanceDomainComplete(domain, answers)).length;
@@ -44,6 +32,8 @@ export function LifeBalanceExperience() {
   const [showResult, setShowResult] = useState(false);
   const toolSectionRef = useRef<HTMLElement | null>(null);
   const resultSectionRef = useRef<HTMLDivElement | null>(null);
+  const activeStepRef = useRef<HTMLDivElement | null>(null);
+  const previousStepIndexRef = useRef(0);
 
   const currentDomain = balanceDomains[currentDomainIndex];
   const answeredDomains = getAnsweredDomainCount(answers);
@@ -53,9 +43,21 @@ export function LifeBalanceExperience() {
 
   useEffect(() => {
     if (showResult) {
-      scrollNodeIntoView(resultSectionRef.current);
+      scrollToolViewportNodeIntoView(resultSectionRef.current);
     }
   }, [showResult]);
+
+  useEffect(() => {
+    if (showResult) {
+      return;
+    }
+
+    if (previousStepIndexRef.current !== currentDomainIndex) {
+      scrollToolViewportNodeIntoView(activeStepRef.current, "step");
+    }
+
+    previousStepIndexRef.current = currentDomainIndex;
+  }, [currentDomainIndex, showResult]);
 
   function updateDomain(domain: BalanceDomain, patch: Partial<BalanceAnswers[typeof domain.key]>) {
     setAnswers((current) => ({
@@ -88,7 +90,8 @@ export function LifeBalanceExperience() {
     setAnswers(getInitialBalanceAnswers());
     setCurrentDomainIndex(0);
     setShowResult(false);
-    scrollNodeIntoView(toolSectionRef.current);
+    previousStepIndexRef.current = 0;
+    scrollToolViewportNodeIntoView(toolSectionRef.current);
   }
 
   const sidebar = (
@@ -168,7 +171,7 @@ export function LifeBalanceExperience() {
             />
 
             <div className={styles.toolContentArea}>
-              <div className={styles.stepTransition} key={currentDomain.key}>
+              <div className={styles.stepTransition} key={currentDomain.key} ref={activeStepRef}>
                 <DomainSliderCard
                   answer={answers[currentDomain.key]}
                   domain={currentDomain}

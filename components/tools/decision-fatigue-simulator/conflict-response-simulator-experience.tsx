@@ -10,6 +10,7 @@ import {
   type SimulatorScenario,
 } from "@/data/conflict-response-simulator";
 import { ChevronRightIcon } from "@/components/tools/icons";
+import { scrollToolViewportNodeIntoView } from "@/components/tools/experience-scroll";
 import styles from "./decision-fatigue-simulator.module.css";
 import { ChoiceGrid } from "./choice-grid";
 import { ClarityCurveChart } from "./clarity-curve-chart";
@@ -22,19 +23,6 @@ import { ScenarioCard } from "./scenario-card";
 import { SignalBars } from "./signal-bars";
 import { ToolShell } from "./tool-shell";
 
-function scrollNodeIntoView(node: HTMLElement | null) {
-  if (!node) {
-    return;
-  }
-
-  const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  node.scrollIntoView({
-    behavior: shouldReduceMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
-
 function getAnsweredScenarioCount(answers: SimulatorAnswers) {
   return simulatorScenarios.filter((scenario) => isDecisionScenarioComplete(scenario, answers)).length;
 }
@@ -45,6 +33,8 @@ export function DecisionFatigueExperience() {
   const [showResult, setShowResult] = useState(false);
   const toolSectionRef = useRef<HTMLElement | null>(null);
   const resultSectionRef = useRef<HTMLDivElement | null>(null);
+  const activeStepRef = useRef<HTMLDivElement | null>(null);
+  const previousStepIndexRef = useRef(0);
 
   const currentScenario = simulatorScenarios[currentScenarioIndex];
   const result = calculateDecisionFatigueSimulation(answers);
@@ -54,9 +44,21 @@ export function DecisionFatigueExperience() {
 
   useEffect(() => {
     if (showResult) {
-      scrollNodeIntoView(resultSectionRef.current);
+      scrollToolViewportNodeIntoView(resultSectionRef.current);
     }
   }, [showResult]);
+
+  useEffect(() => {
+    if (showResult) {
+      return;
+    }
+
+    if (previousStepIndexRef.current !== currentScenarioIndex) {
+      scrollToolViewportNodeIntoView(activeStepRef.current, "step");
+    }
+
+    previousStepIndexRef.current = currentScenarioIndex;
+  }, [currentScenarioIndex, showResult]);
 
   function updateAnswer(scenario: SimulatorScenario, choiceId: string) {
     setAnswers((current) => ({
@@ -86,7 +88,8 @@ export function DecisionFatigueExperience() {
     setAnswers(getInitialDecisionAnswers());
     setCurrentScenarioIndex(0);
     setShowResult(false);
-    scrollNodeIntoView(toolSectionRef.current);
+    previousStepIndexRef.current = 0;
+    scrollToolViewportNodeIntoView(toolSectionRef.current);
   }
 
   const sidebar = (
@@ -145,7 +148,7 @@ export function DecisionFatigueExperience() {
             />
 
             <div className={styles.toolContentArea}>
-              <div className={styles.stepTransition} key={currentScenario.id}>
+              <div className={styles.stepTransition} key={currentScenario.id} ref={activeStepRef}>
                 <ScenarioCard
                   eyebrow={`Scenario ${currentScenario.step.toString().padStart(2, "0")} · ${currentScenario.label}`}
                   hint={currentScenario.hint}

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ChevronRightIcon } from "@/components/tools/icons";
+import { scrollToolViewportNodeIntoView } from "@/components/tools/experience-scroll";
 import { MetricDial } from "@/components/tools/burnout-risk-audit/metric-dial";
 import { MultiSelectChips } from "@/components/tools/burnout-risk-audit/multi-select-chips";
 import { SegmentedChoice } from "@/components/tools/burnout-risk-audit/segmented-choice";
@@ -34,19 +35,6 @@ type BurnoutFamilyExperienceProps = {
   toolSlug: BurnoutFamilyToolSlug;
 };
 
-function scrollNodeIntoView(node: HTMLElement | null) {
-  if (!node) {
-    return;
-  }
-
-  const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  node.scrollIntoView({
-    behavior: shouldReduceMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
-
 function getAnsweredStepCount(tool: BurnoutFamilyTool, answers: BurnoutFamilyAnswers) {
   return tool.steps.filter((step) => isBurnoutFamilyStepComplete(step, answers)).length;
 }
@@ -58,6 +46,8 @@ export function BurnoutFamilyExperience({ toolSlug }: BurnoutFamilyExperiencePro
   const [showResult, setShowResult] = useState(false);
   const toolSectionRef = useRef<HTMLElement | null>(null);
   const resultSectionRef = useRef<HTMLDivElement | null>(null);
+  const activeStepRef = useRef<HTMLDivElement | null>(null);
+  const previousStepIndexRef = useRef(0);
 
   const currentStep = tool.steps[currentStepIndex];
   const result = calculateBurnoutFamilyResult(tool, answers);
@@ -67,9 +57,21 @@ export function BurnoutFamilyExperience({ toolSlug }: BurnoutFamilyExperiencePro
 
   useEffect(() => {
     if (showResult) {
-      scrollNodeIntoView(resultSectionRef.current);
+      scrollToolViewportNodeIntoView(resultSectionRef.current);
     }
   }, [showResult]);
+
+  useEffect(() => {
+    if (showResult) {
+      return;
+    }
+
+    if (previousStepIndexRef.current !== currentStepIndex) {
+      scrollToolViewportNodeIntoView(activeStepRef.current, "step");
+    }
+
+    previousStepIndexRef.current = currentStepIndex;
+  }, [currentStepIndex, showResult]);
 
   function updateAnswer<Key extends keyof BurnoutFamilyAnswers>(
     field: Key,
@@ -124,7 +126,8 @@ export function BurnoutFamilyExperience({ toolSlug }: BurnoutFamilyExperiencePro
     setAnswers(getInitialBurnoutFamilyAnswers());
     setCurrentStepIndex(0);
     setShowResult(false);
-    scrollNodeIntoView(toolSectionRef.current);
+    previousStepIndexRef.current = 0;
+    scrollToolViewportNodeIntoView(toolSectionRef.current);
   }
 
   function renderCurrentStep(step: BurnoutFamilyStep) {
@@ -212,7 +215,7 @@ export function BurnoutFamilyExperience({ toolSlug }: BurnoutFamilyExperiencePro
             />
 
             <div className={styles.toolContentArea}>
-              <div className={styles.toolStepTransition} key={currentStep.id}>
+              <div className={styles.toolStepTransition} key={currentStep.id} ref={activeStepRef}>
                 <StepCard eyebrow={currentStep.eyebrow} hint={currentStep.hint} question={currentStep.question}>
                   {renderCurrentStep(currentStep)}
                 </StepCard>

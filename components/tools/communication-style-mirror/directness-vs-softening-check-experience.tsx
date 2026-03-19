@@ -13,6 +13,7 @@ import {
   type SequenceKey,
 } from "@/data/directness-vs-softening-check";
 import { ChevronRightIcon } from "@/components/tools/icons";
+import { scrollToolViewportNodeIntoView } from "@/components/tools/experience-scroll";
 import styles from "./communication-style-mirror.module.css";
 import { CommunicationDistortionMap } from "./communication-distortion-map";
 import { DialogueStyleMirror } from "./dialogue-style-mirror";
@@ -30,19 +31,6 @@ import { SliderInput } from "./slider-input";
 import { StepCard } from "./step-card";
 import { ToolShell } from "./tool-shell";
 
-function scrollNodeIntoView(node: HTMLElement | null) {
-  if (!node) {
-    return;
-  }
-
-  const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  node.scrollIntoView({
-    behavior: shouldReduceMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
-
 function getAnsweredStepCount(answers: CommunicationStyleAnswers) {
   return communicationStyleSteps.filter((step) => isCommunicationStyleStepComplete(step, answers)).length;
 }
@@ -53,6 +41,8 @@ export function CommunicationStyleExperience() {
   const [showResult, setShowResult] = useState(false);
   const toolSectionRef = useRef<HTMLElement | null>(null);
   const resultSectionRef = useRef<HTMLDivElement | null>(null);
+  const activeStepRef = useRef<HTMLDivElement | null>(null);
+  const previousStepIndexRef = useRef(0);
 
   const currentStep = communicationStyleSteps[currentStepIndex];
   const result = calculateCommunicationStyleResult(answers);
@@ -62,9 +52,21 @@ export function CommunicationStyleExperience() {
 
   useEffect(() => {
     if (showResult) {
-      scrollNodeIntoView(resultSectionRef.current);
+      scrollToolViewportNodeIntoView(resultSectionRef.current);
     }
   }, [showResult]);
+
+  useEffect(() => {
+    if (showResult) {
+      return;
+    }
+
+    if (previousStepIndexRef.current !== currentStepIndex) {
+      scrollToolViewportNodeIntoView(activeStepRef.current, "step");
+    }
+
+    previousStepIndexRef.current = currentStepIndex;
+  }, [currentStepIndex, showResult]);
 
   function updateAnswer<Key extends keyof CommunicationStyleAnswers>(
     field: Key,
@@ -151,7 +153,8 @@ export function CommunicationStyleExperience() {
     setAnswers(getInitialCommunicationStyleAnswers());
     setCurrentStepIndex(0);
     setShowResult(false);
-    scrollNodeIntoView(toolSectionRef.current);
+    previousStepIndexRef.current = 0;
+    scrollToolViewportNodeIntoView(toolSectionRef.current);
   }
 
   function renderCurrentStep(step: CommunicationStyleStep) {
@@ -316,7 +319,7 @@ export function CommunicationStyleExperience() {
             />
 
             <div className={styles.toolContentArea}>
-              <div className={styles.stepTransition} key={currentStep.id}>
+              <div className={styles.stepTransition} key={currentStep.id} ref={activeStepRef}>
                 <StepCard eyebrow={currentStep.eyebrow} hint={currentStep.hint} question={currentStep.question}>
                   {renderCurrentStep(currentStep)}
                 </StepCard>

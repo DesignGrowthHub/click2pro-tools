@@ -2591,3 +2591,324 @@
     max-width: none;
   }
 }
+
+
+/* Interaction refinement pass */
+.toolStepTransition,
+.stepTransition {
+  scroll-margin-top: 172px;
+}
+
+.toolContentArea {
+  gap: 20px;
+}
+
+.progressHeader {
+  padding: 16px 18px;
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(7, 19, 31, 0.82);
+  box-shadow: 0 20px 52px rgba(2, 9, 18, 0.28);
+}
+
+.progressMeta {
+  align-items: center;
+}
+
+.progressEyebrow,
+.progressLabel {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+}
+
+.progressStepLabel,
+.progressCounter {
+  margin-top: 6px;
+  color: rgba(231, 237, 243, 0.84);
+  font-size: 0.95rem;
+}
+
+.progressPercent {
+  font-size: 1.08rem;
+}
+
+.progressTrack {
+  margin-top: 12px;
+  height: 11px;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.progressFill {
+  box-shadow:
+    0 0 18px rgba(125, 211, 252, 0.16),
+    0 0 34px rgba(125, 211, 252, 0.05);
+}
+
+.stepCard {
+  padding: 24px 22px;
+  border-radius: 28px;
+}
+
+.stepHeader,
+.stepCardHeader {
+  max-width: 64ch;
+}
+
+.stepQuestion {
+  margin: 10px 0 12px;
+  line-height: 1.04;
+}
+
+.stepHint {
+  max-width: 56ch;
+  font-size: 0.95rem;
+  line-height: 1.58;
+  color: rgba(215, 224, 234, 0.68);
+}
+
+.stepBody {
+  margin-top: 22px;
+}
+
+.scenarioGrid,
+.segmentedGrid,
+.choiceGrid,
+.choiceGridCards,
+.choiceGridStatement,
+.tripleSliderGrid,
+.driverGrid,
+.clusterGrid {
+  gap: 14px;
+}
+
+.scenarioCard,
+.choiceCard,
+.choiceButton,
+.segmentButton,
+.chipButton {
+  border-color: rgba(255, 255, 255, 0.11);
+}
+
+.scenarioCard,
+.choiceCard,
+.choiceButton {
+  min-height: 118px;
+  padding: 16px;
+  gap: 10px;
+  border-radius: 24px;
+}
+
+.segmentButton {
+  min-height: 62px;
+  padding: 14px 16px;
+  border-radius: 20px;
+}
+
+.chipButton {
+  min-height: 46px;
+  padding: 0 14px;
+}
+
+.scenarioLabel,
+.choiceTitle {
+  line-height: 1.42;
+}
+
+.scenarioDescription,
+.choiceDescription,
+.choiceCaption {
+  line-height: 1.58;
+}
+
+.scenarioCard:focus-visible,
+.choiceCard:focus-visible,
+.choiceButton:focus-visible,
+.segmentButton:focus-visible,
+.chipButton:focus-visible {
+  outline: none;
+  border-color: rgba(198, 166, 103, 0.62);
+  box-shadow:
+    0 0 0 1px rgba(198, 166, 103, 0.18),
+    0 18px 42px rgba(2, 10, 20, 0.2);
+}
+
+.scenarioCardSelected,
+.choiceCardSelected,
+.choiceButtonSelected,
+.segmentButtonSelected,
+.chipButtonSelected {
+  border-color: rgba(198, 166, 103, 0.68);
+  background:
+    linear-gradient(180deg, rgba(198, 166, 103, 0.18), rgba(255, 255, 255, 0.03)),
+    rgba(10, 21, 33, 0.9);
+  box-shadow:
+    0 20px 46px rgba(2, 10, 20, 0.24),
+    0 0 0 1px rgba(198, 166, 103, 0.16),
+    inset 0 1px 0 rgba(255, 244, 220, 0.12),
+    inset 0 0 26px rgba(198, 166, 103, 0.1);
+}
+
+.scenarioCardSelected .scenarioMarker,
+.choiceCardSelected .choiceIcon,
+.choiceButtonSelected .choiceIcon {
+  background: rgba(198, 166, 103, 0.18);
+  color: rgba(255, 242, 216, 0.96);
+}
+
+.toolFooterRow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px 14px;
+}
+
+.toolFooterMeta {
+  grid-column: 1 / -1;
+}
+
+.toolFooterHint {
+  max-width: 62ch;
+  color: rgba(215, 224, 234, 0.66);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.toolFooterRow .backButton {
+  width: auto;
+  min-height: 44px;
+  padding: 0 16px;
+  justify-self: start;
+}
+
+.toolFooterRow .nextButton {
+  width: 100%;
+  min-height: 50px;
+  padding: 0 20px;
+}
+
+.backButton {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.035);
+  color: rgba(230, 236, 241, 0.82);
+}
+
+.backButton:disabled,
+.nextButton:disabled {
+  opacity: 0.52;
+  filter: saturate(0.82);
+}
+
+@media (min-width: 720px) {
+  .toolFooterRow {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 14px 18px;
+  }
+
+  .toolFooterMeta {
+    grid-column: auto;
+  }
+
+  .toolFooterRow .backButton {
+    min-height: 46px;
+    padding: 0 18px;
+  }
+
+  .toolFooterRow .nextButton {
+    width: auto;
+    min-width: 190px;
+  }
+}
+
+@media (max-width: 719px) {
+  .toolStepTransition,
+  .stepTransition {
+    scroll-margin-top: 150px;
+  }
+
+  .toolShell,
+  .toolShellInner,
+  .resultCard {
+    border-radius: 26px;
+  }
+
+  .toolShell {
+    padding: 14px;
+    gap: 14px;
+  }
+
+  .toolContentArea {
+    gap: 16px;
+  }
+
+  .progressHeader {
+    top: 8px;
+    padding: 14px 15px;
+    border-radius: 20px;
+  }
+
+  .progressStepLabel,
+  .progressCounter {
+    font-size: 0.89rem;
+  }
+
+  .progressPercent {
+    font-size: 1rem;
+  }
+
+  .progressTrack {
+    height: 10px;
+  }
+
+  .stepCard {
+    padding: 18px 16px;
+    border-radius: 24px;
+  }
+
+  .stepQuestion {
+    margin: 8px 0 10px;
+    font-size: clamp(1.38rem, 6vw, 1.74rem);
+  }
+
+  .stepHint,
+  .toolFooterHint {
+    font-size: 0.88rem;
+  }
+
+  .stepBody {
+    margin-top: 18px;
+  }
+
+  .scenarioGrid,
+  .segmentedGrid,
+  .choiceGrid,
+  .choiceGridCards,
+  .choiceGridStatement,
+  .tripleSliderGrid,
+  .driverGrid,
+  .clusterGrid {
+    gap: 12px;
+  }
+
+  .scenarioCard,
+  .choiceCard,
+  .choiceButton {
+    min-height: 102px;
+    padding: 14px;
+    gap: 8px;
+    border-radius: 20px;
+  }
+
+  .segmentButton {
+    min-height: 56px;
+    padding: 12px 14px;
+    border-radius: 18px;
+  }
+
+  .chipButton {
+    min-height: 42px;
+    padding: 0 12px;
+  }
+
+  .toolFooterRow {
+    gap: 10px 12px;
+  }
+}

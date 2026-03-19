@@ -13,6 +13,7 @@ import {
   type WorkStressStep,
 } from "@/data/meeting-burden-mapper";
 import { ChevronRightIcon } from "@/components/tools/icons";
+import { scrollToolViewportNodeIntoView } from "@/components/tools/experience-scroll";
 import styles from "./work-stress-load-mapper.module.css";
 import { ControlDemandPanel } from "./control-demand-panel";
 import { DragRankList } from "./drag-rank-list";
@@ -30,19 +31,6 @@ import { StepCard } from "./step-card";
 import { ToolShell } from "./tool-shell";
 import { WorkLoadDistributionChart } from "./work-load-distribution-chart";
 
-function scrollNodeIntoView(node: HTMLElement | null) {
-  if (!node) {
-    return;
-  }
-
-  const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  node.scrollIntoView({
-    behavior: shouldReduceMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
-
 function getAnsweredStepCount(answers: WorkStressAnswers) {
   return workStressSteps.filter((step) => isWorkStressStepComplete(step, answers)).length;
 }
@@ -53,6 +41,8 @@ export function WorkStressLoadExperience() {
   const [showResult, setShowResult] = useState(false);
   const toolSectionRef = useRef<HTMLElement | null>(null);
   const resultSectionRef = useRef<HTMLDivElement | null>(null);
+  const activeStepRef = useRef<HTMLDivElement | null>(null);
+  const previousStepIndexRef = useRef(0);
 
   const currentStep = workStressSteps[currentStepIndex];
   const result = calculateWorkStressResult(answers);
@@ -62,9 +52,21 @@ export function WorkStressLoadExperience() {
 
   useEffect(() => {
     if (showResult) {
-      scrollNodeIntoView(resultSectionRef.current);
+      scrollToolViewportNodeIntoView(resultSectionRef.current);
     }
   }, [showResult]);
+
+  useEffect(() => {
+    if (showResult) {
+      return;
+    }
+
+    if (previousStepIndexRef.current !== currentStepIndex) {
+      scrollToolViewportNodeIntoView(activeStepRef.current, "step");
+    }
+
+    previousStepIndexRef.current = currentStepIndex;
+  }, [currentStepIndex, showResult]);
 
   function updateAnswer<Key extends keyof WorkStressAnswers>(
     field: Key,
@@ -151,7 +153,8 @@ export function WorkStressLoadExperience() {
     setAnswers(getInitialWorkStressAnswers());
     setCurrentStepIndex(0);
     setShowResult(false);
-    scrollNodeIntoView(toolSectionRef.current);
+    previousStepIndexRef.current = 0;
+    scrollToolViewportNodeIntoView(toolSectionRef.current);
   }
 
   function renderCurrentStep(step: WorkStressStep) {
@@ -310,7 +313,7 @@ export function WorkStressLoadExperience() {
             />
 
             <div className={styles.toolContentArea}>
-              <div className={styles.stepTransition} key={currentStep.id}>
+              <div className={styles.stepTransition} key={currentStep.id} ref={activeStepRef}>
                 <StepCard eyebrow={currentStep.eyebrow} hint={currentStep.hint} question={currentStep.question}>
                   {renderCurrentStep(currentStep)}
                 </StepCard>

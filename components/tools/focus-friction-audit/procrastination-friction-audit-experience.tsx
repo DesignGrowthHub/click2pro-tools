@@ -14,6 +14,7 @@ import {
   isFocusStepComplete,
 } from "@/data/procrastination-friction-audit";
 import { ChevronRightIcon } from "@/components/tools/icons";
+import { scrollToolViewportNodeIntoView } from "@/components/tools/experience-scroll";
 import styles from "./focus-friction-audit.module.css";
 import { DragRankList } from "./drag-rank-list";
 import { FrictionProfilePreview } from "./friction-profile-preview";
@@ -30,19 +31,6 @@ import { SliderInput } from "./slider-input";
 import { StepCard } from "./step-card";
 import { ToolShell } from "./tool-shell";
 
-function scrollNodeIntoView(node: HTMLElement | null) {
-  if (!node) {
-    return;
-  }
-
-  const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  node.scrollIntoView({
-    behavior: shouldReduceMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
-
 function getAnsweredStepCount(answers: FocusAnswers) {
   return focusAuditSteps.filter((step) => isFocusStepComplete(step, answers)).length;
 }
@@ -53,6 +41,8 @@ export function FocusFrictionExperience() {
   const [showResult, setShowResult] = useState(false);
   const toolSectionRef = useRef<HTMLElement | null>(null);
   const resultSectionRef = useRef<HTMLDivElement | null>(null);
+  const activeStepRef = useRef<HTMLDivElement | null>(null);
+  const previousStepIndexRef = useRef(0);
 
   const currentStep = focusAuditSteps[currentStepIndex];
   const result = calculateFocusFrictionAudit(answers);
@@ -62,9 +52,21 @@ export function FocusFrictionExperience() {
 
   useEffect(() => {
     if (showResult) {
-      scrollNodeIntoView(resultSectionRef.current);
+      scrollToolViewportNodeIntoView(resultSectionRef.current);
     }
   }, [showResult]);
+
+  useEffect(() => {
+    if (showResult) {
+      return;
+    }
+
+    if (previousStepIndexRef.current !== currentStepIndex) {
+      scrollToolViewportNodeIntoView(activeStepRef.current, "step");
+    }
+
+    previousStepIndexRef.current = currentStepIndex;
+  }, [currentStepIndex, showResult]);
 
   function updateAnswer<Key extends keyof FocusAnswers>(field: Key, value: FocusAnswers[Key]) {
     setAnswers((current) => ({
@@ -133,7 +135,8 @@ export function FocusFrictionExperience() {
     setAnswers(getInitialFocusAnswers());
     setCurrentStepIndex(0);
     setShowResult(false);
-    scrollNodeIntoView(toolSectionRef.current);
+    previousStepIndexRef.current = 0;
+    scrollToolViewportNodeIntoView(toolSectionRef.current);
   }
 
   function renderCurrentStep(step: FocusAuditStep) {
@@ -262,7 +265,7 @@ export function FocusFrictionExperience() {
             />
 
             <div className={styles.toolContentArea}>
-              <div className={styles.stepTransition} key={currentStep.id}>
+              <div className={styles.stepTransition} key={currentStep.id} ref={activeStepRef}>
                 <StepCard eyebrow={currentStep.eyebrow} hint={currentStep.hint} question={currentStep.question}>
                   {renderCurrentStep(currentStep)}
                 </StepCard>

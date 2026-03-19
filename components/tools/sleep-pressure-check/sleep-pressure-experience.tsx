@@ -12,6 +12,7 @@ import {
   type SleepToolStep,
 } from "@/data/sleep-pressure-check";
 import { ChevronRightIcon } from "@/components/tools/icons";
+import { scrollToolViewportNodeIntoView } from "@/components/tools/experience-scroll";
 import styles from "./sleep-pressure-check.module.css";
 import { DisruptionSourcePanel } from "./disruption-source-panel";
 import { LiveRecoveryPreview } from "./live-recovery-preview";
@@ -26,19 +27,6 @@ import { SpilloverImpactChart } from "./spillover-impact-chart";
 import { StepCard } from "./step-card";
 import { ToolShell } from "./tool-shell";
 
-function scrollNodeIntoView(node: HTMLElement | null) {
-  if (!node) {
-    return;
-  }
-
-  const shouldReduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  node.scrollIntoView({
-    behavior: shouldReduceMotion ? "auto" : "smooth",
-    block: "start",
-  });
-}
-
 function getAnsweredStepCount(answers: SleepAnswers) {
   return sleepPressureSteps.filter((step) => isSleepStepComplete(step, answers)).length;
 }
@@ -49,6 +37,8 @@ export function SleepPressureExperience() {
   const [showResult, setShowResult] = useState(false);
   const toolSectionRef = useRef<HTMLElement | null>(null);
   const resultSectionRef = useRef<HTMLDivElement | null>(null);
+  const activeStepRef = useRef<HTMLDivElement | null>(null);
+  const previousStepIndexRef = useRef(0);
 
   const currentStep = sleepPressureSteps[currentStepIndex];
   const result = calculateSleepPressure(answers);
@@ -58,9 +48,21 @@ export function SleepPressureExperience() {
 
   useEffect(() => {
     if (showResult) {
-      scrollNodeIntoView(resultSectionRef.current);
+      scrollToolViewportNodeIntoView(resultSectionRef.current);
     }
   }, [showResult]);
+
+  useEffect(() => {
+    if (showResult) {
+      return;
+    }
+
+    if (previousStepIndexRef.current !== currentStepIndex) {
+      scrollToolViewportNodeIntoView(activeStepRef.current, "step");
+    }
+
+    previousStepIndexRef.current = currentStepIndex;
+  }, [currentStepIndex, showResult]);
 
   function updateAnswer<Key extends keyof SleepAnswers>(field: Key, value: SleepAnswers[Key]) {
     setAnswers((current) => ({
@@ -114,7 +116,8 @@ export function SleepPressureExperience() {
     setAnswers(getInitialSleepAnswers());
     setCurrentStepIndex(0);
     setShowResult(false);
-    scrollNodeIntoView(toolSectionRef.current);
+    previousStepIndexRef.current = 0;
+    scrollToolViewportNodeIntoView(toolSectionRef.current);
   }
 
   function renderCurrentStep(step: SleepToolStep) {
@@ -225,7 +228,7 @@ export function SleepPressureExperience() {
             />
 
             <div className={styles.toolContentArea}>
-              <div className={styles.stepTransition} key={currentStep.id}>
+              <div className={styles.stepTransition} key={currentStep.id} ref={activeStepRef}>
                 <StepCard eyebrow={currentStep.eyebrow} hint={currentStep.hint} question={currentStep.question}>
                   {renderCurrentStep(currentStep)}
                 </StepCard>

@@ -3,6 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://click2pro.com"),
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+    shortcut: "/favicon.ico",
+  },
   title: {
     default: "Click2Pro Tools",
     template: "%s | Click2Pro Tools",
