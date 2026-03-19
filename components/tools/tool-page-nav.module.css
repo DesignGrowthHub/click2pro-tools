@@ -1,0 +1,265 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  background: linear-gradient(180deg, rgba(7, 19, 31, 0.94), rgba(7, 19, 31, 0.74));
+}
+
+.container {
+  width: min(100% - 32px, 1280px);
+  margin: 0 auto;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 84px;
+}
+
+.brandWrap,
+.desktopNav,
+.desktopActions,
+.mobileRow,
+.menuButton,
+.drawerNav,
+.drawerActions {
+  display: flex;
+}
+
+.brandWrap,
+.desktopActions {
+  align-items: center;
+  gap: 14px;
+}
+
+.desktopNav {
+  align-items: center;
+  gap: 24px;
+}
+
+.desktopActions {
+  flex: 0 0 auto;
+}
+
+.libraryPill,
+.headerLink,
+.headerCta,
+.menuButton,
+.drawerLink,
+.drawerCta {
+  transition:
+    transform 180ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease,
+    opacity 220ms ease;
+}
+
+.libraryPill,
+.headerLink,
+.headerCta,
+.drawerLink,
+.drawerCta {
+  text-decoration: none;
+}
+
+.libraryPill,
+.headerCta,
+.drawerCta,
+.menuButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+}
+
+.libraryPill {
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.05);
+  color: #d7e0ea;
+  font-size: 0.92rem;
+}
+
+.headerLink,
+.drawerLink {
+  color: #9fb0c3;
+  font-size: 0.96rem;
+}
+
+.headerCta,
+.drawerCta {
+  border: 1px solid rgba(147, 197, 253, 0.28);
+  background:
+    linear-gradient(180deg, rgba(147, 197, 253, 0.24), rgba(110, 231, 183, 0.08)),
+    rgba(24, 48, 74, 0.78);
+  box-shadow:
+    0 20px 48px rgba(2, 9, 18, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  color: #f8fafc;
+}
+
+.menuButton {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
+}
+
+.menuButtonLines {
+  position: relative;
+  width: 18px;
+  height: 14px;
+}
+
+.menuButtonLines::before,
+.menuButtonLines::after,
+.menuButtonLines span {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 1.5px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 180ms ease, opacity 180ms ease, top 180ms ease;
+}
+
+.menuButtonLines::before {
+  top: 0;
+}
+
+.menuButtonLines span {
+  top: 6px;
+}
+
+.menuButtonLines::after {
+  top: 12px;
+}
+
+.menuButtonOpen .menuButtonLines::before {
+  top: 6px;
+  transform: rotate(45deg);
+}
+
+.menuButtonOpen .menuButtonLines span {
+  opacity: 0;
+}
+
+.menuButtonOpen .menuButtonLines::after {
+  top: 6px;
+  transform: rotate(-45deg);
+}
+
+.libraryPill:hover,
+.headerLink:hover,
+.headerCta:hover,
+.menuButton:hover,
+.drawerLink:hover,
+.drawerCta:hover {
+  transform: translateY(-2px);
+}
+
+.libraryPill:hover,
+.headerLink:hover,
+.drawerLink:hover {
+  color: #f8fafc;
+}
+
+.libraryPill:focus-visible,
+.headerLink:focus-visible,
+.headerCta:focus-visible,
+.menuButton:focus-visible,
+.drawerLink:focus-visible,
+.drawerCta:focus-visible {
+  outline: 2px solid rgba(147, 197, 253, 0.94);
+  outline-offset: 3px;
+}
+
+.mobileRow {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+}
+
+.drawer {
+  display: none;
+  margin: 0 0 18px;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.03)),
+    rgba(12, 27, 42, 0.94);
+  box-shadow:
+    0 28px 60px rgba(2, 9, 18, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.drawerOpen {
+  display: grid;
+  gap: 14px;
+}
+
+.drawerLabel {
+  margin: 0;
+  color: #d6b36a;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.drawerNav {
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drawerLink {
+  min-height: 42px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.drawerActions {
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 959px) {
+  .inner {
+    min-height: 78px;
+  }
+
+  .brandWrap,
+  .desktopNav,
+  .desktopActions {
+    display: none;
+  }
+
+  .mobileRow {
+    display: flex;
+  }
+}
+
+@media (min-width: 960px) {
+  .drawer {
+    display: none !important;
+  }
+}

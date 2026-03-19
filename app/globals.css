@@ -1,0 +1,128 @@
+:root {
+  --tools-bg: #07131f;
+  --tools-section: #0c1b2a;
+  --tools-card: #122338;
+  --tools-card-strong: #18304a;
+  --tools-text: #f8fafc;
+  --tools-text-soft: rgba(215, 224, 234, 0.78);
+  --tools-muted: #9fb0c3;
+  --tools-label: #d6b36a;
+  --tools-meta: #7fb7d9;
+  --tools-accent: #6fd3ff;
+  --tools-accent-soft: #a7e6ff;
+  --tools-border: rgba(255, 255, 255, 0.08);
+  --tools-border-strong: rgba(255, 255, 255, 0.14);
+  --tools-shadow: 0 36px 110px rgba(1, 8, 17, 0.38);
+  --tools-radius-xl: 40px;
+  --tools-radius-lg: 32px;
+  --tools-radius-md: 24px;
+  --tools-radius-sm: 18px;
+  --tools-max-width: 1280px;
+  --tools-font-stack: "SF Pro Display", "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--tools-bg);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--tools-bg);
+  background:
+    radial-gradient(circle at 50% -8%, rgba(167, 230, 255, 0.16), transparent 30%),
+    radial-gradient(circle at 18% 12%, rgba(111, 211, 255, 0.08), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(167, 230, 255, 0.06), transparent 22%),
+    radial-gradient(circle at 50% 24%, rgba(214, 179, 106, 0.035), transparent 18%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.028), transparent 18%),
+    var(--tools-bg);
+  color: var(--tools-text);
+  font-family: var(--tools-font-stack);
+  line-height: 1.62;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+#__next {
+  min-height: 100vh;
+}
+
+main {
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+input,
+select,
+textarea {
+  background-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.22);
+  color: var(--tools-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--tools-accent-soft);
+  outline-offset: 3px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

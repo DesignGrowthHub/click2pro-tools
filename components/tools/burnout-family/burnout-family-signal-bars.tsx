@@ -1,0 +1,46 @@
+import { renderIcon } from "@/components/tools/icons";
+import type { BurnoutFamilyResult, BurnoutFamilyTool } from "@/data/burnout-family";
+import styles from "@/components/tools/burnout-risk-audit/burnout-risk-audit.module.css";
+
+type BurnoutFamilySignalBarsProps = {
+  tool: BurnoutFamilyTool;
+  result: BurnoutFamilyResult;
+};
+
+export function BurnoutFamilySignalBars({ tool, result }: BurnoutFamilySignalBarsProps) {
+  return (
+    <div className={styles.signalBarsCard}>
+      <div className={styles.visualCardHeader}>
+        <p className={styles.visualEyebrow}>{tool.visualCopy.signalBars.eyebrow}</p>
+        <h3 className={styles.visualTitle}>{tool.visualCopy.signalBars.title}</h3>
+        <p className={styles.visualCopy}>{tool.visualCopy.signalBars.copy}</p>
+      </div>
+
+      <div className={styles.signalBarsList}>
+        {tool.dimensions.map((dimension) => (
+          <div className={styles.signalBarRow} key={dimension.key}>
+            <div className={styles.signalBarMeta}>
+              <div className={styles.signalBarLabelWrap}>
+                <span className={styles.signalBarIcon}>{renderIcon(dimension.icon, styles.inlineIcon)}</span>
+                <div>
+                  <p className={styles.signalBarLabel}>{dimension.label}</p>
+                  <p className={styles.signalBarDescription}>{dimension.description}</p>
+                </div>
+              </div>
+              <span className={styles.signalBarValue}>{result.dimensions[dimension.key]}</span>
+            </div>
+            <div className={styles.signalBarTrack}>
+              <span
+                className={styles.signalBarFill}
+                style={{
+                  width: `${result.dimensions[dimension.key]}%`,
+                  background: `linear-gradient(90deg, ${dimension.accent}, ${result.band.gradientTo})`,
+                }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

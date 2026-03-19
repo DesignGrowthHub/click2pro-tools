@@ -1,0 +1,3568 @@
+.page {
+  --decoder-cyan: #93c5fd;
+  --decoder-blue: #93c5fd;
+  --decoder-lavender: #c4b5fd;
+  --decoder-amber: #fcd34d;
+  --decoder-coral: #fb7185;
+  --decoder-rose: #fda4af;
+  --decoder-mint: #6ee7b7;
+  --decoder-bg: #07131f;
+  --decoder-section: #0c1b2a;
+  --decoder-card: #122338;
+  --decoder-card-hover: #18304a;
+  --decoder-text: #f8fafc;
+  --decoder-text-soft: #d7e0ea;
+  --decoder-muted: #9fb0c3;
+  --decoder-label: #d6b36a;
+  --decoder-meta: #7fb7d9;
+  position: relative;
+  overflow: clip;
+  color: var(--decoder-text-soft);
+  background:
+    radial-gradient(circle at 10% 8%, rgba(147, 197, 253, 0.12), transparent 24%),
+    radial-gradient(circle at 84% 8%, rgba(251, 113, 133, 0.14), transparent 28%),
+    radial-gradient(circle at 74% 50%, rgba(252, 211, 77, 0.12), transparent 24%),
+    radial-gradient(circle at 28% 74%, rgba(196, 181, 253, 0.08), transparent 26%),
+    radial-gradient(circle at 60% 84%, rgba(110, 231, 183, 0.05), transparent 26%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.024), transparent 18%),
+    var(--decoder-bg);
+}
+
+.page::before,
+.page::after {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 999px;
+  filter: blur(120px);
+  opacity: 0.55;
+}
+
+.page::before {
+  top: 180px;
+  left: -90px;
+  width: 340px;
+  height: 340px;
+  background: rgba(252, 211, 77, 0.1);
+}
+
+.page::after {
+  top: 920px;
+  right: -70px;
+  width: 320px;
+  height: 320px;
+  background: rgba(251, 113, 133, 0.12);
+}
+
+.pageContainer {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 32px, 1280px);
+  margin: 0 auto;
+}
+
+.inlineIcon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  background: linear-gradient(180deg, rgba(7, 19, 31, 0.94), rgba(7, 19, 31, 0.72));
+}
+
+.headerInner,
+.heroMetaRow,
+.heroMetaItem,
+.heroActions,
+.toolShellInner,
+.progressMeta,
+.sliderLabelRow,
+.previewHeader,
+.scorePanel,
+.resultActions,
+.toolFooterRow,
+.sideChipRow,
+.relatedCardTop,
+.signalBarMeta,
+.signalBarTitleWrap,
+.relatedLink,
+.clusterLegend,
+.clusterLabelWrap,
+.recoveryCardTop,
+.rankListLabels,
+.rankActions,
+.rankFooter,
+.profileMetaRow {
+  display: flex;
+}
+
+.headerInner {
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 84px;
+}
+
+.headerBrandWrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.headerNav {
+  display: none;
+  align-items: center;
+  gap: 24px;
+}
+
+.headerLink,
+.libraryPill,
+.headerCta,
+.primaryButton,
+.secondaryButton,
+.nextButton,
+.backButton,
+.nextStepButton,
+.choiceCard,
+.segmentButton,
+.chipButton,
+.relatedCard,
+.faqQuestion,
+.rankItem,
+.rankActionButton,
+.rankConfirmButton {
+  transition:
+    transform 180ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease,
+    opacity 220ms ease;
+}
+
+.headerLink,
+.libraryPill,
+.headerCta,
+.primaryButton,
+.secondaryButton,
+.nextButton,
+.backButton,
+.nextStepButton,
+.relatedLink {
+  text-decoration: none;
+}
+
+.headerLink {
+  color: var(--decoder-muted);
+  font-size: 0.96rem;
+}
+
+.libraryPill,
+.headerCta,
+.primaryButton,
+.secondaryButton,
+.nextButton,
+.backButton,
+.nextStepButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+}
+
+.libraryPill {
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--decoder-text-soft);
+  font-size: 0.92rem;
+}
+
+.headerCta,
+.primaryButton,
+.nextButton,
+.nextStepButton {
+  border: 1px solid rgba(251, 113, 133, 0.22);
+  background:
+    linear-gradient(180deg, rgba(251, 113, 133, 0.16), rgba(252, 211, 77, 0.08)),
+    rgba(24, 48, 74, 0.8);
+  box-shadow:
+    0 20px 48px rgba(2, 9, 18, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  color: var(--decoder-text);
+}
+
+.secondaryButton,
+.backButton,
+.rankActionButton {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--decoder-text-soft);
+}
+
+.headerLink:hover,
+.libraryPill:hover,
+.headerCta:hover,
+.primaryButton:hover,
+.secondaryButton:hover,
+.nextButton:hover,
+.backButton:hover,
+.nextStepButton:hover,
+.choiceCard:hover,
+.segmentButton:hover,
+.chipButton:hover,
+.relatedCard:hover,
+.faqItem:hover,
+.rankItem:hover,
+.rankActionButton:hover,
+.rankConfirmButton:hover {
+  transform: translateY(-2px);
+}
+
+.headerLink:hover,
+.libraryPill:hover {
+  color: var(--decoder-text);
+}
+
+.libraryPill:focus-visible,
+.headerLink:focus-visible,
+.headerCta:focus-visible,
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible,
+.nextButton:focus-visible,
+.backButton:focus-visible,
+.nextStepButton:focus-visible,
+.choiceCard:focus-visible,
+.segmentButton:focus-visible,
+.chipButton:focus-visible,
+.sliderInput:focus-visible,
+.rankActionButton:focus-visible,
+.rankConfirmButton:focus-visible {
+  outline: 2px solid rgba(251, 113, 133, 0.9);
+  outline-offset: 3px;
+}
+
+.heroSection,
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 80px 0;
+}
+
+.sectionAlt {
+  background:
+    radial-gradient(circle at 18% 24%, rgba(147, 197, 253, 0.06), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0)),
+    rgba(12, 27, 42, 0.42);
+}
+
+.heroGrid {
+  display: grid;
+  gap: 36px;
+  align-items: center;
+}
+
+.heroCopy {
+  max-width: 640px;
+}
+
+.heroEyebrow,
+.sectionEyebrow,
+.stepEyebrow,
+.progressLabel,
+.previewLabel,
+.sideCardEyebrow,
+.resultKicker,
+.visualEyebrow,
+.insightEyebrow,
+.nextStepEyebrow,
+.dimensionKicker,
+.bandRange,
+.relatedCategory,
+.triggerSummaryEyebrow,
+.recoverySummaryEyebrow {
+  margin: 0;
+  color: var(--decoder-label);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.heroTitle,
+.sectionTitle,
+.stepQuestion,
+.resultTitle {
+  margin: 0;
+  color: var(--decoder-text);
+  letter-spacing: -0.04em;
+}
+
+.heroTitle {
+  max-width: 11ch;
+  font-size: clamp(3rem, 7vw, 5.1rem);
+  line-height: 0.94;
+}
+
+.heroDescription,
+.sectionDescription,
+.stepHint,
+.sideCardCopy,
+.sideCardFootnote,
+.resultCopy,
+.resultSignal,
+.resultInterpretation,
+.visualCopy,
+.editorialParagraph,
+.infoCardCopy,
+.nextStepDescription,
+.relatedDescription,
+.faqAnswer,
+.choiceDescription,
+.bandCopy,
+.bandDescriptor,
+.dimensionSummary,
+.toolFooterHint,
+.signalBarDescription,
+.previewDescriptor,
+.clusterLegendMeta,
+.sequenceSummary,
+.recoverySummaryCopy,
+.reactionPathCopy {
+  margin: 0;
+  color: var(--decoder-text-soft);
+  line-height: 1.7;
+}
+
+.heroDescription {
+  margin-top: 20px;
+  max-width: 60ch;
+  font-size: 1.02rem;
+}
+
+.heroMetaRow {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.heroMetaItem {
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--decoder-text-soft);
+  font-size: 0.92rem;
+}
+
+.heroMetaIcon {
+  color: var(--decoder-meta);
+}
+
+.heroActions {
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.heroVisualShell {
+  position: relative;
+  min-height: 460px;
+}
+
+.heroGlowA,
+.heroGlowB,
+.toolShellGlow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.heroGlowA {
+  left: 4%;
+  top: 8%;
+  width: 240px;
+  height: 240px;
+  background: rgba(251, 113, 133, 0.16);
+  animation: floatGlow 12s ease-in-out infinite;
+}
+
+.heroGlowB {
+  right: 8%;
+  bottom: 8%;
+  width: 190px;
+  height: 190px;
+  background: rgba(252, 211, 77, 0.12);
+  animation: floatGlow 11s ease-in-out infinite reverse;
+}
+
+.heroPreviewPanel,
+.toolShell,
+.stepCard,
+.previewPanel,
+.sideCard,
+.resultCard,
+.visualCard,
+.bandCard,
+.editorialBlock,
+.dimensionCard,
+.infoCard,
+.nextStepPanel,
+.relatedCard,
+.faqItem {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)),
+    rgba(18, 35, 56, 0.88);
+  box-shadow:
+    0 30px 60px rgba(2, 8, 18, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.11);
+}
+
+.heroPreviewPanel,
+.previewPanel {
+  padding: 26px;
+  scroll-margin-top: 120px;
+}
+
+.sectionHeading,
+.visualHeader {
+  display: grid;
+  gap: 10px;
+}
+
+.sectionHeading {
+  margin-bottom: 30px;
+  max-width: 760px;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.02;
+}
+
+.sectionDescription {
+  max-width: 66ch;
+}
+
+.toolShell {
+  --decoder-shell-glow: rgba(251, 113, 133, 0.12);
+  padding: 1px;
+}
+
+.toolShellGlow {
+  inset: 12% auto auto 6%;
+  width: 290px;
+  height: 290px;
+  background: var(--decoder-shell-glow);
+  opacity: 0.82;
+}
+
+.toolShellInner {
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  gap: 22px;
+  padding: 24px;
+}
+
+.toolMain,
+.toolSidebar {
+  min-width: 0;
+}
+
+.progressHeader {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  margin-bottom: 8px;
+  padding-top: 8px;
+  backdrop-filter: blur(18px);
+}
+
+.progressMeta {
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.progressCounter,
+.scoreLabel,
+.relatedTime,
+.relatedCategory,
+.toolFooterHint {
+  color: var(--decoder-muted);
+  font-size: 0.9rem;
+}
+
+.progressPercent {
+  margin: 0;
+  color: var(--decoder-text);
+  font-size: 1.04rem;
+  font-weight: 600;
+}
+
+.progressTrack,
+.signalBarTrack,
+.previewMetricTrack,
+.triggerTrack,
+.recoveryTrack {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.progressTrack {
+  height: 10px;
+}
+
+.progressBar,
+.signalBarFill,
+.previewMetricFill,
+.triggerFill,
+.recoveryFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.progressBar {
+  background: linear-gradient(90deg, var(--decoder-blue), var(--decoder-amber), var(--decoder-coral));
+  box-shadow: 0 0 24px rgba(251, 113, 133, 0.18);
+}
+
+.toolContentArea {
+  display: grid;
+  gap: 24px;
+}
+
+.stepTransition {
+  animation: riseIn 260ms ease;
+}
+
+.stepCard {
+  padding: 28px;
+}
+
+.stepQuestion {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  line-height: 1.08;
+}
+
+.stepHint {
+  margin-top: 12px;
+}
+
+.stepContent {
+  margin-top: 24px;
+}
+
+.scenarioGrid,
+.segmentedGrid,
+.bandGrid,
+.dimensionGrid,
+.infoCardGrid,
+.relatedGrid,
+.faqList,
+.insightsGrid,
+.resultInsightGrid,
+.triggerPanelGrid,
+.triggerSummaryGrid,
+.profileBandGrid,
+.recoveryGrid {
+  display: grid;
+  gap: 18px;
+}
+
+.scenarioGrid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.scenarioGridThree {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.segmentedGrid {
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+}
+
+.choiceCard,
+.segmentButton,
+.chipButton {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--decoder-text-soft);
+  font: inherit;
+}
+
+.choiceCard {
+  display: grid;
+  gap: 8px;
+  min-height: 164px;
+  padding: 18px;
+  text-align: left;
+  border-radius: 24px;
+}
+
+.choiceMarker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--decoder-meta);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.segmentButton {
+  min-height: 60px;
+  padding: 16px;
+  border-radius: 18px;
+  font-weight: 600;
+}
+
+.choiceCardSelected,
+.segmentButtonSelected,
+.chipButtonSelected {
+  border-color: rgba(251, 113, 133, 0.24);
+  background:
+    linear-gradient(180deg, rgba(251, 113, 133, 0.14), rgba(252, 211, 77, 0.08)),
+    rgba(24, 48, 74, 0.76);
+  box-shadow:
+    0 18px 40px rgba(2, 8, 18, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  color: var(--decoder-text);
+}
+
+.choiceTitle,
+.visualTitle,
+.bandTitle,
+.editorialTitle,
+.infoCardTitle,
+.nextStepTitle,
+.relatedTitle,
+.sideCardTitle,
+.signalBarTitle,
+.dimensionKicker,
+.clusterLabel,
+.recoveryCardTitle,
+.recoverySummaryTitle,
+.sequenceTitle {
+  margin: 0;
+  color: var(--decoder-text);
+}
+
+.choiceTitle {
+  font-size: 1rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.choiceDescription {
+  font-size: 0.94rem;
+}
+
+.sliderField {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.sliderFieldCompact {
+  padding: 16px;
+}
+
+.sliderLabelRow {
+  align-items: end;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.sliderLabel {
+  color: var(--decoder-text);
+  font-weight: 600;
+}
+
+.sliderValue {
+  color: var(--decoder-text);
+  font-size: 1.4rem;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.sliderInput {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(147, 197, 253, 0.78) 0%,
+      rgba(251, 113, 133, 0.82) var(--range-fill, 50%),
+      rgba(255, 255, 255, 0.08) var(--range-fill, 50%),
+      rgba(255, 255, 255, 0.08) 100%
+    );
+  cursor: pointer;
+}
+
+.sliderInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: var(--decoder-text);
+  box-shadow:
+    0 10px 26px rgba(3, 7, 18, 0.35),
+    0 0 0 10px rgba(251, 113, 133, 0.08);
+}
+
+.sliderInput::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: var(--decoder-text);
+  box-shadow:
+    0 10px 26px rgba(3, 7, 18, 0.35),
+    0 0 0 10px rgba(251, 113, 133, 0.08);
+}
+
+.sliderScale {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--decoder-muted);
+  font-size: 0.9rem;
+}
+
+.chipWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chipButton {
+  min-height: 46px;
+  padding: 0 16px;
+  border-radius: 999px;
+}
+
+.chipButton:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.tripleSliderGrid {
+  display: grid;
+  gap: 14px;
+}
+
+.sidebarStack {
+  display: grid;
+  gap: 18px;
+}
+
+.sideCard {
+  padding: 22px;
+}
+
+.sideCardTitle {
+  margin-top: 10px;
+  font-size: 1.18rem;
+  line-height: 1.2;
+}
+
+.sideCardCopy {
+  margin-top: 12px;
+}
+
+.sideChipRow {
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.metaChip,
+.previewChip,
+.clusterPill,
+.sequencePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.metaChip {
+  color: var(--decoder-meta);
+}
+
+.sideCardFootnote {
+  margin-top: 12px;
+  color: var(--decoder-muted);
+}
+
+.previewHeader {
+  align-items: start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.previewLabel {
+  margin-bottom: 10px;
+}
+
+.previewTitle {
+  margin: 0;
+  color: var(--decoder-text);
+  font-size: 1.22rem;
+  line-height: 1.15;
+}
+
+.previewDescriptor {
+  max-width: 24ch;
+  font-size: 0.9rem;
+}
+
+.previewPanelCompact {
+  padding: 22px;
+}
+
+.previewMetricStack {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.previewStageGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.previewStageCard,
+.previewBalanceCard {
+  padding: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.previewMetricRow {
+  display: grid;
+  gap: 8px;
+}
+
+.previewMetricMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--decoder-text-soft);
+  font-size: 0.9rem;
+}
+
+.previewMetricTrack,
+.signalBarTrack,
+.triggerTrack,
+.recoveryTrack {
+  height: 10px;
+}
+
+.previewChipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.progressPreviewShell {
+  margin-top: 18px;
+  padding: 18px 16px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
+    radial-gradient(circle at 16% 18%, rgba(147, 197, 253, 0.12), transparent 24%),
+    radial-gradient(circle at 82% 20%, rgba(251, 113, 133, 0.1), transparent 26%),
+    rgba(10, 22, 37, 0.9);
+}
+
+.progressPreviewFlow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+  gap: 8px;
+  min-height: 134px;
+}
+
+.progressPreviewStep {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  gap: 10px;
+  min-height: 134px;
+}
+
+.progressPreviewBar {
+  display: block;
+  width: 100%;
+  max-width: 42px;
+  height: var(--stage-height, 48px);
+  border-radius: 18px 18px 8px 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 22%),
+    linear-gradient(180deg, var(--stage-accent, var(--decoder-blue)), rgba(255, 255, 255, 0.08));
+  box-shadow:
+    0 18px 34px rgba(2, 8, 18, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.progressPreviewBarBreak {
+  outline: 1px solid rgba(251, 113, 133, 0.32);
+  box-shadow:
+    0 0 0 1px rgba(251, 113, 133, 0.16),
+    0 18px 34px rgba(2, 8, 18, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.progressPreviewStepLabel {
+  color: var(--decoder-muted);
+  font-size: 0.76rem;
+  text-align: center;
+  line-height: 1.35;
+}
+
+.progressPreviewConnector {
+  position: absolute;
+  right: -10px;
+  bottom: 34px;
+  width: 16px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.34));
+}
+
+.waveformRow {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  align-items: end;
+  gap: 8px;
+  min-height: 92px;
+  padding: 18px 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
+    rgba(255, 255, 255, 0.025);
+}
+
+.waveformBar {
+  display: block;
+  height: var(--wave-height, 32px);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--wave-accent, var(--decoder-cyan)), rgba(255, 255, 255, 0.12));
+  box-shadow: 0 12px 24px rgba(2, 8, 18, 0.18);
+}
+
+.previewChip {
+  color: var(--decoder-text-soft);
+  font-size: 0.84rem;
+}
+
+.previewBalanceRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.previewBalanceLabel {
+  display: block;
+  color: var(--decoder-muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.previewBalanceValue {
+  display: block;
+  margin-top: 8px;
+  color: var(--decoder-text);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.miniTrustMeter {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.miniTrustOrb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 188px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 50% 16%, rgba(255, 255, 255, 0.06), transparent 44%),
+    radial-gradient(circle at 18% 18%, rgba(147, 197, 253, 0.12), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgba(103, 232, 249, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
+    rgba(10, 22, 37, 0.92);
+}
+
+.miniTrustRing {
+  position: absolute;
+  inset: 18px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle closest-side, rgba(7, 19, 31, 0.9) 78%, transparent 79%),
+    conic-gradient(
+      from 220deg,
+      rgba(103, 232, 249, 0.96) 0 calc(var(--trust-fill, 50%) * 1%),
+      rgba(255, 255, 255, 0.08) calc(var(--trust-fill, 50%) * 1%) 100%
+    );
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 16px 36px rgba(2, 8, 18, 0.34);
+}
+
+.miniTrustCore {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.miniTrustValue {
+  color: var(--decoder-text);
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -0.07em;
+  line-height: 1;
+}
+
+.miniTrustLabel {
+  color: var(--decoder-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.miniMatrixShell {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.miniMatrixFrame {
+  position: relative;
+  overflow: hidden;
+  min-height: 190px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
+    radial-gradient(circle at 18% 18%, rgba(147, 197, 253, 0.14), transparent 28%),
+    radial-gradient(circle at 82% 24%, rgba(103, 232, 249, 0.12), transparent 28%),
+    radial-gradient(circle at 70% 78%, rgba(196, 181, 253, 0.1), transparent 30%),
+    rgba(10, 22, 37, 0.92);
+}
+
+.miniMatrixGrid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.miniMatrixQuadrant {
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.miniMatrixQuadrant:nth-child(2n) {
+  border-right: 0;
+}
+
+.miniMatrixQuadrant:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.miniMatrixPoint,
+.matrixPoint {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.miniMatrixPulse,
+.matrixPointPulse {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  animation: clusterPulse 4.2s ease-in-out infinite;
+}
+
+.miniMatrixPulse {
+  width: 54px;
+  height: 54px;
+  background: rgba(103, 232, 249, 0.26);
+  filter: blur(12px);
+}
+
+.miniMatrixDot {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.88);
+  background: linear-gradient(135deg, var(--decoder-cyan), var(--decoder-lavender));
+  box-shadow: 0 0 22px rgba(103, 232, 249, 0.34);
+}
+
+.toolFooterRow {
+  align-items: center;
+  gap: 16px;
+}
+
+.toolFooterMeta {
+  flex: 1 1 auto;
+}
+
+.toolFooterHint {
+  display: block;
+  line-height: 1.65;
+}
+
+.backButton:disabled,
+.nextButton:disabled {
+  opacity: 0.45;
+  transform: none;
+  cursor: not-allowed;
+}
+
+.resultCard {
+  --result-band-glow: rgba(103, 232, 249, 0.12);
+  --result-band-gradient: linear-gradient(135deg, var(--decoder-cyan), var(--decoder-mint));
+  padding: 1px;
+}
+
+.resultCard::before {
+  content: "";
+  position: absolute;
+  inset: 10% auto auto 8%;
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  background: var(--result-band-glow);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.resultCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--result-band-gradient);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.resultGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 28px;
+  padding: 28px;
+}
+
+.resultVisual {
+  display: grid;
+  place-items: center;
+}
+
+.resultVisualStack {
+  display: grid;
+  gap: 18px;
+  width: 100%;
+}
+
+.meterLayout {
+  display: grid;
+  gap: 22px;
+  margin-top: 18px;
+}
+
+.meterShell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 340px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.06), transparent 42%),
+    radial-gradient(circle at 18% 18%, rgba(147, 197, 253, 0.14), transparent 28%),
+    radial-gradient(circle at 82% 24%, rgba(103, 232, 249, 0.12), transparent 28%),
+    radial-gradient(circle at 70% 78%, rgba(196, 181, 253, 0.1), transparent 30%),
+    rgba(10, 22, 37, 0.94);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 28px 56px rgba(2, 8, 18, 0.34);
+}
+
+.meterSvg {
+  width: min(100%, 300px);
+  height: auto;
+  transform: rotate(-90deg);
+}
+
+.meterTrack,
+.meterProgress,
+.meterProgressSecondary {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.meterTrack {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 16;
+}
+
+.meterProgress {
+  stroke: var(--meter-accent);
+  stroke-width: 16;
+  filter: drop-shadow(0 0 14px rgba(103, 232, 249, 0.22));
+}
+
+.meterProgressSecondary {
+  stroke: var(--meter-accent);
+  stroke-width: 10;
+  opacity: 0.92;
+  filter: drop-shadow(0 0 12px rgba(251, 113, 133, 0.16));
+}
+
+.meterCore {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  max-width: 220px;
+  text-align: center;
+}
+
+.meterValue {
+  color: var(--decoder-text);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.meterLabel {
+  color: var(--decoder-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.meterSupport {
+  color: var(--decoder-text-soft);
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.meterStatGrid,
+.drainMapGrid,
+.priorityPanelGrid {
+  display: grid;
+  gap: 16px;
+}
+
+.meterStatCard,
+.drainMapCard,
+.priorityCard {
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    rgba(255, 255, 255, 0.028);
+}
+
+.meterStatLabel,
+.priorityCardLabel {
+  display: block;
+  color: var(--decoder-label);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.meterStatValue,
+.drainMapValue,
+.priorityCardTitle {
+  display: block;
+  margin-top: 10px;
+  color: var(--decoder-text);
+}
+
+.meterStatValue {
+  font-size: 1.2rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.priorityCardTitle {
+  font-size: 1.16rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.drainMapTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.drainMapTitle {
+  color: var(--decoder-text);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.drainMapValue {
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+
+.resultSummary {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.resultScoreOrb {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 30px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.08), transparent 48%),
+    rgba(255, 255, 255, 0.04);
+}
+
+.resultScoreValue {
+  color: var(--decoder-text);
+  font-size: clamp(3.1rem, 6vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 1;
+}
+
+.resultScoreLabel {
+  color: var(--decoder-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.resultStageStack {
+  display: grid;
+  gap: 12px;
+}
+
+.resultStageRow {
+  display: grid;
+  gap: 8px;
+}
+
+.resultTitle {
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 0.98;
+}
+
+.resultDescriptor {
+  color: var(--decoder-label);
+  font-size: 1rem;
+}
+
+.resultSignal {
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.scorePanel {
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.scoreMetric {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 150px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.scoreValue,
+.scoreValueSmall {
+  display: block;
+  color: var(--decoder-text);
+  line-height: 1.05;
+}
+
+.scoreValue {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 650;
+  letter-spacing: -0.06em;
+}
+
+.scoreValueSmall {
+  font-size: 1.04rem;
+  font-weight: 600;
+}
+
+.resultInsightGrid {
+  gap: 14px;
+}
+
+.insightCard {
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.insightCopy {
+  margin: 0;
+}
+
+.resultActions {
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.visualFooterNote {
+  margin-top: 18px;
+}
+
+.pathMapShell {
+  display: grid;
+  gap: 22px;
+  margin-top: 18px;
+}
+
+.pathMapFlow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  align-items: end;
+  min-height: 286px;
+  padding: 22px 18px 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    radial-gradient(circle at 18% 20%, rgba(147, 197, 253, 0.12), transparent 24%),
+    radial-gradient(circle at 82% 20%, rgba(251, 113, 133, 0.1), transparent 28%),
+    radial-gradient(circle at 70% 74%, rgba(252, 211, 77, 0.08), transparent 28%),
+    rgba(10, 22, 37, 0.94);
+}
+
+.pathMapStep {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-items: end;
+  gap: 14px;
+  min-height: 246px;
+}
+
+.pathMapNode {
+  display: block;
+  width: 100%;
+  max-width: 52px;
+  height: var(--node-height, 72px);
+  border-radius: 22px 22px 10px 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 22%),
+    linear-gradient(180deg, var(--node-accent, var(--decoder-blue)), rgba(255, 255, 255, 0.08));
+  box-shadow:
+    0 22px 44px rgba(2, 8, 18, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+}
+
+.pathMapNodeBreak {
+  outline: 1px solid rgba(251, 113, 133, 0.34);
+  box-shadow:
+    0 0 0 1px rgba(251, 113, 133, 0.14),
+    0 22px 44px rgba(2, 8, 18, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.pathMapMeta {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  text-align: center;
+}
+
+.pathMapLabel {
+  color: var(--decoder-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.pathMapValue {
+  color: var(--decoder-muted);
+  font-size: 0.82rem;
+}
+
+.pathMapConnector {
+  position: absolute;
+  right: -20px;
+  bottom: 104px;
+  width: 28px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.34));
+}
+
+.pathMapInsight {
+  display: grid;
+  gap: 16px;
+}
+
+.pathMapInsightCard {
+  padding: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    rgba(255, 255, 255, 0.02);
+}
+
+.pathMapInsightLabel {
+  display: block;
+  color: var(--decoder-label);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.pathMapInsightValue {
+  display: block;
+  margin-top: 10px;
+  color: var(--decoder-text);
+  font-size: 1.14rem;
+  line-height: 1.3;
+}
+
+.visualCard,
+.bandCard,
+.editorialBlock,
+.dimensionCard,
+.infoCard,
+.nextStepPanel,
+.relatedCard,
+.faqItem {
+  padding: 22px;
+}
+
+.visualCardCompact {
+  padding: 20px;
+}
+
+.visualTitle,
+.bandTitle,
+.editorialTitle,
+.infoCardTitle,
+.nextStepTitle,
+.relatedTitle,
+.signalBarTitle,
+.recoverySummaryTitle {
+  font-size: 1.24rem;
+  line-height: 1.14;
+}
+
+.signalBarStack,
+.editorialStack {
+  display: grid;
+  gap: 16px;
+}
+
+.signalBarCard {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.signalBarMeta {
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.matrixShell {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 14px 18px;
+  margin-top: 18px;
+}
+
+.matrixAxisY,
+.matrixAxisX {
+  display: flex;
+  color: var(--decoder-muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.matrixAxisY {
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.matrixAxisX {
+  grid-column: 2;
+  justify-content: space-between;
+}
+
+.matrixFrame {
+  position: relative;
+  overflow: hidden;
+  min-height: 420px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    radial-gradient(circle at 18% 18%, rgba(147, 197, 253, 0.14), transparent 26%),
+    radial-gradient(circle at 82% 18%, rgba(103, 232, 249, 0.1), transparent 28%),
+    radial-gradient(circle at 78% 82%, rgba(196, 181, 253, 0.12), transparent 30%),
+    radial-gradient(circle at 22% 82%, rgba(110, 231, 183, 0.08), transparent 30%),
+    rgba(10, 22, 37, 0.94);
+}
+
+.matrixGrid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.matrixCell {
+  padding: 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.matrixCell:nth-child(2n) {
+  border-right: 0;
+}
+
+.matrixCell:nth-last-child(-n + 2) {
+  border-bottom: 0;
+}
+
+.matrixCellTitle {
+  margin: 0;
+  color: var(--decoder-text);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.matrixCellCopy {
+  margin: 10px 0 0;
+  max-width: 24ch;
+  color: var(--decoder-muted);
+  line-height: 1.58;
+}
+
+.matrixPointPulse {
+  width: 96px;
+  height: 96px;
+  background: rgba(103, 232, 249, 0.18);
+  filter: blur(20px);
+}
+
+.matrixPointCore {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 3px solid rgba(255, 255, 255, 0.88);
+  background: linear-gradient(135deg, var(--decoder-cyan), var(--decoder-mint));
+  box-shadow:
+    0 0 24px rgba(103, 232, 249, 0.28),
+    0 0 0 10px rgba(103, 232, 249, 0.06);
+}
+
+.matrixCenterCard {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  min-width: 140px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(7, 19, 31, 0.72);
+  backdrop-filter: blur(18px);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 24px 46px rgba(2, 8, 18, 0.34);
+}
+
+.matrixCenterValue {
+  color: var(--decoder-text);
+  font-size: 1rem;
+  font-weight: 650;
+  text-align: center;
+}
+
+.matrixCenterLabel {
+  color: var(--decoder-muted);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.matrixLegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.matrixLegendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--decoder-text-soft);
+}
+
+.matrixLegendItem strong {
+  color: var(--decoder-text);
+  font-size: 0.94rem;
+}
+
+.matrixLegendSwatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.16);
+}
+
+.spreadGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.spreadCard {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    rgba(255, 255, 255, 0.028);
+}
+
+.spreadTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.spreadTitle {
+  color: var(--decoder-text);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.spreadValue {
+  color: var(--decoder-text);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.signalBarTitleWrap {
+  gap: 14px;
+}
+
+.signalBarIcon,
+.relatedIcon,
+.dimensionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--decoder-meta);
+}
+
+.signalBarValue,
+.clusterValue,
+.recoveryCardValue {
+  color: var(--decoder-text);
+  font-size: 1.04rem;
+  font-weight: 700;
+}
+
+.bandSwatch {
+  width: 100%;
+  height: 6px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+}
+
+.bandDescriptor {
+  margin-top: 12px;
+  color: var(--decoder-label);
+}
+
+.bandCopy,
+.infoCardCopy,
+.nextStepDescription,
+.relatedDescription {
+  margin-top: 12px;
+}
+
+.editorialStack {
+  margin-top: 22px;
+}
+
+.editorialParagraph {
+  margin-top: 14px;
+  max-width: 78ch;
+}
+
+.dimensionCardTop {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.nextStepLayout {
+  display: grid;
+  gap: 18px;
+}
+
+.nextStepButton {
+  margin-top: 20px;
+  width: fit-content;
+}
+
+.relatedGrid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.relatedCard {
+  display: grid;
+  gap: 10px;
+}
+
+.relatedLink {
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(--decoder-text);
+  font-weight: 600;
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+  color: var(--decoder-text);
+  font-weight: 600;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqAnswer {
+  margin-top: 14px;
+}
+
+.rankListWrap {
+  display: grid;
+  gap: 16px;
+}
+
+.rankListLabels {
+  justify-content: space-between;
+  gap: 14px;
+  color: var(--decoder-label);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.rankList {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.rankItem {
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    rgba(18, 35, 56, 0.82);
+  cursor: grab;
+}
+
+.rankItemDragging {
+  border-color: rgba(251, 113, 133, 0.32);
+  box-shadow: 0 18px 36px rgba(251, 113, 133, 0.12);
+}
+
+.rankItemMain {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.rankNumber {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--decoder-text);
+  font-weight: 700;
+}
+
+.rankLabel {
+  color: var(--decoder-text);
+  line-height: 1.45;
+}
+
+.rankActions {
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.rankActionButton,
+.rankConfirmButton {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font: inherit;
+}
+
+.rankConfirmButton {
+  border: 1px solid rgba(103, 232, 249, 0.22);
+  background:
+    linear-gradient(180deg, rgba(103, 232, 249, 0.14), rgba(96, 165, 250, 0.06)),
+    rgba(24, 48, 74, 0.78);
+  color: var(--decoder-text);
+  font-weight: 600;
+}
+
+.rankFooter {
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.rankHint {
+  margin: 0;
+  color: var(--decoder-muted);
+  font-size: 0.92rem;
+}
+
+.clusterMap {
+  display: grid;
+  gap: 14px;
+}
+
+.clusterMapCompact {
+  gap: 12px;
+}
+
+.clusterMapFull {
+  gap: 16px;
+}
+
+.clusterSurface {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 340px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(103, 232, 249, 0.12), transparent 28%),
+    radial-gradient(circle at 82% 26%, rgba(251, 113, 133, 0.1), transparent 28%),
+    radial-gradient(circle at 74% 78%, rgba(196, 181, 253, 0.12), transparent 30%),
+    radial-gradient(circle at 24% 80%, rgba(96, 165, 250, 0.11), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.015)),
+    rgba(10, 22, 37, 0.92);
+}
+
+.clusterMapCompact .clusterSurface {
+  min-height: 250px;
+}
+
+.clusterLines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.clusterLines line {
+  stroke: rgba(255, 255, 255, 0.09);
+  stroke-width: 1;
+}
+
+.clusterNode {
+  position: absolute;
+  left: var(--cluster-left);
+  top: var(--cluster-top);
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+
+.clusterPulse {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: calc(var(--cluster-size) + 34px);
+  height: calc(var(--cluster-size) + 34px);
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: var(--cluster-accent);
+  filter: blur(20px);
+  opacity: 0.16;
+  animation: clusterPulse 4.2s ease-in-out infinite;
+}
+
+.clusterCore {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: var(--cluster-size);
+  height: var(--cluster-size);
+  border-radius: 999px;
+  background: var(--cluster-accent);
+  box-shadow: 0 0 24px var(--cluster-accent);
+  animation: clusterDrift 8s ease-in-out infinite;
+}
+
+.clusterLabelWrap {
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 10px;
+  border-radius: 16px;
+  background: rgba(7, 19, 31, 0.68);
+  backdrop-filter: blur(12px);
+}
+
+.clusterLabel {
+  font-size: 0.78rem;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.clusterValue {
+  font-size: 0.74rem;
+  color: var(--decoder-meta);
+}
+
+.clusterCenter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  min-width: 96px;
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(7, 19, 31, 0.74);
+  backdrop-filter: blur(14px);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 20px 40px rgba(2, 8, 18, 0.32);
+}
+
+.clusterCenterValue {
+  color: var(--decoder-text);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+}
+
+.clusterCenterLabel {
+  color: var(--decoder-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.clusterLegend {
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.clusterPill,
+.sequencePill {
+  color: var(--decoder-text);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.sequenceWrap {
+  display: grid;
+  gap: 18px;
+}
+
+.driftChartShell {
+  display: grid;
+  gap: 22px;
+}
+
+.driftChartShellCompact {
+  gap: 18px;
+}
+
+.driftChartSvg {
+  width: 100%;
+  min-height: 250px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 20% 18%, rgba(110, 231, 183, 0.12), transparent 28%),
+    radial-gradient(circle at 82% 20%, rgba(253, 164, 175, 0.1), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.012)),
+    rgba(10, 22, 37, 0.92);
+  padding: 14px;
+}
+
+.driftChartGrid {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-linecap: round;
+  stroke-width: 1.2;
+}
+
+.driftChartLine {
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 12px rgba(103, 232, 249, 0.2));
+}
+
+.driftChartHalo {
+  fill: rgba(255, 255, 255, 0.12);
+}
+
+.driftChartPoint {
+  fill: var(--drift-accent);
+}
+
+.driftStageCards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.driftStageCard {
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.driftStageTop {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.driftStageDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--drift-accent);
+  box-shadow: 0 0 16px var(--drift-accent);
+}
+
+.driftStageLabel {
+  color: var(--decoder-text);
+  font-size: 0.96rem;
+  font-weight: 600;
+}
+
+.driftStageValue {
+  color: var(--decoder-text);
+  font-weight: 700;
+}
+
+.driftStageNote {
+  margin: 10px 0 0;
+  color: var(--decoder-muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.sequenceHeader {
+  display: grid;
+  gap: 10px;
+}
+
+.sequenceFlow {
+  display: grid;
+  gap: 16px;
+}
+
+.sequenceStep {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+  position: relative;
+}
+
+.sequenceNode {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--stage-accent) 18%, rgba(255, 255, 255, 0.02));
+  border: 1px solid color-mix(in srgb, var(--stage-accent) 32%, rgba(255, 255, 255, 0.06));
+  color: var(--decoder-text);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--stage-accent) 18%, transparent);
+}
+
+.sequenceNodeIndex {
+  font-weight: 700;
+}
+
+.sequenceText {
+  display: grid;
+  gap: 4px;
+}
+
+.sequenceDescription {
+  margin: 0;
+  color: var(--decoder-muted);
+  line-height: 1.55;
+}
+
+.sequenceConnector {
+  position: absolute;
+  left: 21px;
+  top: calc(100% + 2px);
+  display: block;
+  width: 2px;
+  height: 16px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(103, 232, 249, 0.54), rgba(196, 181, 253, 0.28));
+}
+
+.triggerPanelGrid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.recoveryGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.recoveryCard,
+.recoverySummaryCard {
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.recoveryCardTop {
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.recoverySummaryCard {
+  margin-top: 18px;
+}
+
+.recoverySummaryTitle {
+  margin-top: 10px;
+}
+
+.returnLibraryRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+@keyframes floatGlow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes clusterDrift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+@keyframes clusterPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.18;
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.08;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.18);
+    opacity: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .bandGrid,
+  .dimensionGrid,
+  .infoCardGrid,
+  .faqList,
+  .resultInsightGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .insightsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nextStepLayout {
+    grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.9fr);
+  }
+
+  .tripleSliderGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .meterLayout {
+    grid-template-columns: minmax(320px, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+  }
+
+  .meterStatGrid,
+  .priorityPanelGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .previewStageGrid,
+  .previewBalanceRow,
+  .driftStageCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .headerNav {
+    display: flex;
+  }
+
+  .heroGrid {
+    grid-template-columns: minmax(0, 1.02fr) minmax(420px, 0.98fr);
+  }
+
+  .heroVisualShell {
+    min-height: 580px;
+  }
+
+  .toolShellInner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    align-items: start;
+  }
+
+  .toolSidebar {
+    position: sticky;
+    top: 110px;
+  }
+
+  .resultGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .bandGrid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 959px) {
+  .headerInner {
+    flex-wrap: wrap;
+    padding: 12px 0;
+  }
+
+  .headerCta {
+    width: 100%;
+  }
+
+  .toolSidebar {
+    order: -1;
+  }
+
+  .recoveryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .heroSection,
+  .section {
+    padding: 68px 0;
+  }
+
+  .heroTitle {
+    max-width: none;
+  }
+
+  .heroPreviewPanel,
+  .previewPanel,
+  .toolShellInner,
+  .stepCard,
+  .resultGrid,
+  .visualCard,
+  .bandCard,
+  .editorialBlock,
+  .dimensionCard,
+  .infoCard,
+  .nextStepPanel,
+  .relatedCard,
+  .faqItem,
+  .sideCard,
+  .resultCard {
+    padding: 20px;
+  }
+
+  .heroActions,
+  .resultActions,
+  .toolFooterRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolFooterMeta {
+    width: 100%;
+  }
+
+  .nextButton,
+  .backButton,
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .segmentedGrid,
+  .scenarioGrid,
+  .bandGrid,
+  .dimensionGrid,
+  .infoCardGrid,
+  .relatedGrid,
+  .faqList,
+  .triggerPanelGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .scenarioGridThree,
+  .previewStageGrid,
+  .previewBalanceRow,
+  .driftStageCards {
+    grid-template-columns: 1fr;
+  }
+
+  .meterShell {
+    min-height: 280px;
+  }
+
+  .miniTrustOrb {
+    min-height: 168px;
+  }
+
+  .matrixShell {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .matrixAxisY {
+    grid-row: 2;
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .matrixFrame {
+    min-height: 320px;
+  }
+
+  .miniMatrixFrame {
+    min-height: 220px;
+  }
+
+  .matrixAxisX {
+    grid-column: auto;
+  }
+
+  .matrixCell {
+    padding: 16px;
+  }
+
+  .matrixCenterCard {
+    min-width: 120px;
+    padding: 14px 16px;
+  }
+
+  .sliderLabelRow,
+  .previewHeader,
+  .signalBarMeta,
+  .clusterLegend,
+  .rankFooter,
+  .recoveryCardTop {
+    display: grid;
+  }
+
+  .rankItem {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .rankActions {
+    width: 100%;
+  }
+
+  .rankActionButton,
+  .rankConfirmButton {
+    flex: 1 1 0;
+  }
+
+  .driftChartSvg {
+    min-height: 220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroGlowA,
+  .heroGlowB,
+  .stepTransition,
+  .clusterPulse,
+  .clusterCore,
+  .headerLink,
+  .libraryPill,
+  .headerCta,
+  .primaryButton,
+  .secondaryButton,
+  .nextButton,
+  .backButton,
+  .nextStepButton,
+  .choiceCard,
+  .segmentButton,
+  .chipButton,
+  .relatedCard,
+  .faqQuestion,
+  .rankItem,
+  .rankActionButton,
+  .rankConfirmButton {
+    animation: none;
+    transition: none;
+  }
+}
+
+
+/* Premium refinement layer */
+.heroSection {
+  padding: 82px 0 60px;
+}
+
+.heroGrid {
+  gap: 38px;
+}
+
+.heroTitle {
+  margin-bottom: 26px;
+  line-height: 1.06;
+}
+
+.heroDescription {
+  max-width: 48rem;
+}
+
+.heroDescription,
+.sectionDescription,
+.stepHint,
+.scenarioDescription,
+.previewSummary,
+.sideCardCopy,
+.sideCardFootnote,
+.resultInterpretation,
+.visualCopy,
+.visualInsight,
+.bandCopy,
+.dimensionSummary,
+.infoCardCopy,
+.nextStepDescription,
+.relatedDescription,
+.faqAnswer,
+.editorialParagraph,
+.resultSummary,
+.scenarioPrompt {
+  line-height: 1.78;
+  opacity: 0.82;
+}
+
+.heroVisualShell,
+.livePreviewCard,
+.previewCard,
+.sideCard,
+.visualCard {
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.heroVisualShell:hover,
+.livePreviewCard:hover,
+.previewCard:hover,
+.sideCard:hover,
+.visualCard:hover {
+  transform: translateY(-4px);
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 14px 0 auto;
+  height: 220px;
+  background: radial-gradient(circle at 20% 30%, rgba(120, 160, 255, 0.06), transparent 40%);
+  pointer-events: none;
+}
+
+.sectionHeading {
+  max-width: 860px;
+  margin-bottom: 36px;
+}
+
+.sectionTitle {
+  margin: 18px 0;
+  line-height: 1.06;
+}
+
+.sectionDescription {
+  max-width: 56ch;
+}
+
+.toolShell {
+  padding: 22px;
+}
+
+.toolContentArea,
+.nextStepLayout {
+  gap: 24px;
+}
+
+.progressHeader {
+  padding: 18px 20px;
+}
+
+.progressTrack {
+  height: 12px;
+  margin-top: 16px;
+}
+
+.progressFill {
+  box-shadow: 0 0 22px rgba(125, 211, 252, 0.18);
+}
+
+.stepCard,
+.scenarioShell {
+  padding: 24px;
+}
+
+.scenarioGrid,
+.segmentedGrid,
+.tripleSliderGrid,
+.clusterGrid,
+.bandGrid,
+.dimensionGrid,
+.infoCardGrid,
+.relatedGrid,
+.insightsGrid,
+.outputGrid,
+.heatGrid,
+.choiceGrid,
+.previewStatsGrid,
+.driverGrid {
+  gap: 18px;
+}
+
+.scenarioCard,
+.choiceCard,
+.choiceButton,
+.segmentButton,
+.chipButton,
+.rankItem,
+.clusterCard,
+.bandCard,
+.dimensionCard,
+.infoCard,
+.relatedCard,
+.nextStepPanel,
+.outputCard,
+.heatCell,
+.previewMetricCard,
+.stackCard,
+.driverCard {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.scenarioCard:hover,
+.choiceCard:hover,
+.choiceButton:hover,
+.segmentButton:hover,
+.chipButton:hover,
+.rankItem:hover,
+.clusterCard:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.024)),
+    rgba(14, 29, 45, 0.82);
+  box-shadow:
+    0 30px 76px rgba(2, 10, 20, 0.28),
+    0 0 0 1px rgba(125, 211, 252, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+.previewCard,
+.sideCard,
+.visualCard,
+.livePreviewCard {
+  padding: 22px;
+  box-shadow:
+    0 30px 76px rgba(2, 10, 20, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 0 40px rgba(125, 211, 252, 0.04);
+}
+
+.bandCard {
+  padding: 24px;
+}
+
+.bandCard::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 0;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(125, 211, 252, 0.88), rgba(214, 179, 106, 0.66), transparent);
+}
+
+.bandCard:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 34px 88px rgba(2, 10, 20, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dimensionCard {
+  padding: 24px;
+}
+
+.dimensionCardTop {
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.dimensionIcon,
+.relatedIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.dimensionKicker {
+  margin: 0 0 10px;
+  font-size: 1.18rem;
+}
+
+.infoCard {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(125, 211, 252, 0.06), transparent 32%),
+    linear-gradient(180deg, rgba(14, 28, 43, 0.94), rgba(10, 22, 35, 0.98));
+}
+
+.infoCard:hover {
+  transform: scale(1.02);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.editorialBlock {
+  max-width: 68ch;
+}
+
+.editorialParagraph {
+  max-width: 66ch;
+  margin: 0 0 24px;
+  line-height: 1.84;
+}
+
+.nextStepPanel {
+  padding: 26px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(125, 211, 252, 0.16), transparent 38%),
+    radial-gradient(circle at 0% 100%, rgba(214, 179, 106, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(25, 48, 74, 0.92), rgba(16, 31, 48, 0.96));
+  box-shadow:
+    0 34px 88px rgba(2, 10, 20, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.nextStepTitle {
+  margin: 12px 0 14px;
+}
+
+.nextStepDescription {
+  max-width: 44ch;
+}
+
+.nextStepButton {
+  margin-top: 24px;
+}
+
+.nextStepButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 60px rgba(4, 14, 25, 0.32);
+}
+
+.relatedGrid {
+  gap: 20px;
+}
+
+.relatedCard {
+  padding: 22px;
+}
+
+.relatedCard:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 32px 84px rgba(2, 10, 20, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.faqList {
+  gap: 16px;
+}
+
+
+/* Report-grade refinement layer */
+.heroTitle,
+.sectionTitle,
+.resultTitle {
+  text-wrap: balance;
+}
+
+.heroTitle {
+  line-height: 1.05;
+}
+
+.sectionTitle {
+  margin-top: 24px;
+  line-height: 1.06;
+}
+
+.heroDescription,
+.sectionDescription,
+.stepHint,
+.choiceDescription,
+.previewSummary,
+.sideCardCopy,
+.sideCardFootnote,
+.resultSummary,
+.resultInterpretation,
+.resultCalloutCopy,
+.resultAlignmentNote,
+.resultCopy,
+.resultDescriptor,
+.visualCopy,
+.visualInsight,
+.bandCopy,
+.dimensionSummary,
+.infoCardCopy,
+.nextStepDescription,
+.relatedDescription,
+.editorialParagraph,
+.faqAnswer,
+.toolFooterHint,
+.insightCopy,
+.signalBarDescription,
+.securityCardCopy,
+.statNote,
+.footerDescription,
+.footerNote,
+.footerClosing {
+  color: rgba(215, 224, 234, 0.74);
+  line-height: 1.8;
+}
+
+.heroDescription,
+.sectionDescription {
+  max-width: 56ch;
+}
+
+.section {
+  padding: 104px 0;
+}
+
+.sectionHeading {
+  margin-bottom: 40px;
+}
+
+.sectionHeading,
+.stepCardHeader,
+.resultCopy,
+.resultSummary,
+.editorialBlock {
+  max-width: 72ch;
+}
+
+.toolShell,
+.toolShellInner {
+  box-shadow:
+    0 44px 108px rgba(1, 8, 16, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.015);
+}
+
+.progressHeader {
+  padding: 20px 22px;
+}
+
+.progressTrack {
+  height: 12px;
+}
+
+.progressFill {
+  box-shadow:
+    0 0 20px rgba(125, 211, 252, 0.18),
+    0 0 42px rgba(125, 211, 252, 0.05);
+}
+
+.stepCard,
+.scenarioShell {
+  padding: 26px;
+}
+
+.stepQuestion {
+  max-width: 20ch;
+  line-height: 1.08;
+}
+
+.stepHint {
+  max-width: 58ch;
+}
+
+.choiceGrid,
+.segmentedGrid,
+.scenarioGrid,
+.choiceGridCards,
+.choiceGridStatement,
+.clusterGrid,
+.driverGrid,
+.bandGrid,
+.dimensionGrid,
+.infoCardGrid,
+.relatedGrid,
+.insightsGrid,
+.outputGrid,
+.heatGrid,
+.previewStatsGrid,
+.resultInsightGrid,
+.resultCalloutGrid,
+.scorePanel {
+  gap: 18px;
+}
+
+.choiceButton,
+.chipButton,
+.segmentButton,
+.scenarioCard,
+.choiceCard,
+.rankItem,
+.clusterCard,
+.scoreMetric,
+.resultCallout,
+.insightCard,
+.resultDriverPill,
+.resultSignal,
+.metaChip,
+.livePreviewBadge,
+.relatedTime,
+.toolCategoryTag {
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.choiceButton:hover,
+.chipButton:hover,
+.segmentButton:hover,
+.scenarioCard:hover,
+.choiceCard:hover,
+.rankItem:hover,
+.clusterCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(11, 24, 38, 0.62);
+  box-shadow:
+    0 24px 56px rgba(2, 10, 20, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.choiceButtonSelected,
+.chipButtonSelected,
+.segmentButtonSelected,
+.choiceCardSelected,
+.scenarioCardSelected,
+.rankItemActive {
+  box-shadow:
+    0 20px 48px rgba(4, 14, 25, 0.28),
+    0 0 0 1px rgba(125, 211, 252, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.livePreviewCard,
+.previewCard,
+.sideCard,
+.visualCard,
+.signalBarsCard,
+.resultCard,
+.bandCard,
+.dimensionCard,
+.infoCard,
+.nextStepPanel,
+.relatedCard,
+.scoreMetric,
+.resultCallout,
+.insightCard,
+.editorialBlock {
+  box-shadow:
+    0 30px 72px rgba(2, 10, 20, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.livePreviewCard,
+.previewCard,
+.sideCard,
+.visualCard,
+.signalBarsCard {
+  padding: 24px;
+}
+
+.livePreviewTitle,
+.sideCardTitle,
+.visualTitle,
+.bandTitle,
+.dimensionKicker,
+.infoCardTitle,
+.nextStepTitle,
+.relatedTitle,
+.signalBarTitle,
+.recoverySummaryTitle,
+.resultCalloutLabel,
+.insightEyebrow,
+.resultKicker {
+  letter-spacing: -0.02em;
+}
+
+.resultSection {
+  padding-top: 34px;
+}
+
+.resultCard {
+  overflow: hidden;
+}
+
+.resultGrid {
+  gap: 30px;
+  padding: 30px;
+}
+
+.resultVisual,
+.resultDialWrap {
+  align-content: start;
+}
+
+.resultSummary,
+.resultCopy {
+  gap: 16px;
+  align-content: start;
+}
+
+.resultSignal {
+  padding: 16px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.resultDriverRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.resultDriverPill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(248, 250, 252, 0.88);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.resultDriverPill:hover,
+.resultSignal:hover,
+.scoreMetric:hover,
+.resultCallout:hover,
+.insightCard:hover,
+.relatedCard:hover,
+.bandCard:hover,
+.dimensionCard:hover,
+.infoCard:hover,
+.nextStepPanel:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 32px 78px rgba(2, 10, 20, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.scoreMetric,
+.resultCallout,
+.insightCard,
+.signalBarCard,
+.sourceSplitItem,
+.spilloverCard,
+.driverCard,
+.outputCard,
+.heatCell,
+.previewMetricCard,
+.stackCard {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(125, 211, 252, 0.04), transparent 36%),
+    rgba(255, 255, 255, 0.04);
+}
+
+.scoreValue,
+.resultScoreValue {
+  line-height: 0.96;
+}
+
+.scoreLabel,
+.resultScoreLabel,
+.resultCalloutLabel,
+.insightEyebrow,
+.resultKicker,
+.visualEyebrow,
+.sideCardEyebrow,
+.sectionEyebrow,
+.heroEyebrow,
+.dimensionEyebrow,
+.bandEyebrow,
+.relatedMeta,
+.relatedCategory,
+.toolType,
+.toolTime {
+  color: rgba(214, 179, 106, 0.92);
+}
+
+.resultInterpretation,
+.resultCopy,
+.resultSummary,
+.insightCopy,
+.resultCalloutCopy {
+  max-width: 60ch;
+}
+
+.dimensionCardTop,
+.relatedCardTop,
+.signalBarMeta,
+.visualCardHeader,
+.livePreviewTop {
+  margin-bottom: 18px;
+}
+
+.dimensionIcon,
+.relatedIcon,
+.signalBarIcon,
+.statIconWrap,
+.resultIconWrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.editorialBlock {
+  max-width: 68ch;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(125, 211, 252, 0.04), transparent 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02)),
+    rgba(10, 22, 35, 0.38);
+}
+
+.editorialParagraph {
+  max-width: 64ch;
+  margin-bottom: 26px;
+}
+
+.nextStepPanel {
+  padding: 28px;
+}
+
+.nextStepDescription {
+  max-width: 46ch;
+}
+
+.relatedCard {
+  padding: 24px;
+}
+
+.relatedDescription {
+  max-width: 34ch;
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 84px 0;
+  }
+
+  .resultGrid {
+    padding: 24px;
+  }
+
+  .stepCard,
+  .scenarioShell,
+  .editorialBlock,
+  .nextStepPanel,
+  .relatedCard,
+  .bandCard,
+  .dimensionCard,
+  .infoCard,
+  .livePreviewCard,
+  .previewCard,
+  .sideCard,
+  .visualCard,
+  .signalBarsCard {
+    padding: 22px;
+  }
+
+  .stepQuestion {
+    max-width: none;
+  }
+}
+/* Shared layout correction layer */
+.bandGrid {
+  width: 100%;
+  align-items: stretch;
+}
+
+.bandCard {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 0;
+  padding: 20px 18px 18px;
+  overflow: visible;
+}
+
+.bandRange,
+.bandDescriptor {
+  line-height: 1.32;
+}
+
+.bandCopy {
+  max-width: none;
+  line-height: 1.72;
+  overflow-wrap: anywhere;
+}
+
+.resultGrid {
+  align-items: start;
+}
+
+.resultCopy,
+.resultSummary {
+  max-width: min(100%, 68ch);
+}
+
+.resultCalloutGrid {
+  align-items: stretch;
+}
+
+.resultCallout,
+.resultDriverPill,
+.resultSignal,
+.sideCard,
+.livePreviewCard,
+.previewCard,
+.visualCard,
+.signalBarsCard {
+  overflow: visible;
+  min-height: 0;
+}
+
+.resultDriverPill {
+  align-items: flex-start;
+  min-height: 0;
+  padding: 10px 14px;
+  line-height: 1.45;
+  white-space: normal;
+}
+
+.sideCardTitle,
+.resultTitle,
+.bandTitle {
+  overflow-wrap: anywhere;
+}
+
+.sideCardCopy,
+.sideCardFootnote,
+.resultCalloutCopy,
+.resultSummary,
+.resultInterpretation,
+.resultSignal {
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 1200px) {
+  .bandGrid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .bandCard {
+    padding: 18px 18px 16px;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 960px) {
+  .bandGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 959px) and (min-width: 768px) {
+  .bandGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .bandGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bandCard,
+  .resultCallout {
+    padding: 18px;
+  }
+}
+
+/* Editorial width correction layer */
+.editorialStack {
+  width: 100%;
+}
+
+@media (min-width: 960px) {
+  .editorialStack {
+    gap: 22px;
+  }
+
+  .editorialStack .editorialBlock {
+    width: 100%;
+    max-width: min(100%, 1080px);
+  }
+
+  .editorialStack .editorialParagraph {
+    max-width: 88ch;
+  }
+}
+
+@media (min-width: 1200px) {
+  .editorialStack .editorialBlock {
+    max-width: min(100%, 1120px);
+  }
+
+  .editorialStack .editorialParagraph {
+    max-width: 92ch;
+  }
+}
+
+@media (max-width: 959px) {
+  .editorialStack .editorialBlock,
+  .editorialStack .editorialParagraph {
+    max-width: none;
+  }
+}

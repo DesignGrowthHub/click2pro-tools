@@ -1,0 +1,2565 @@
+.page {
+  --life-blue: #7dd3fc;
+  --life-cyan: #67e8f9;
+  --life-mint: #6ee7b7;
+  --life-lavender: #c4b5fd;
+  --life-amber: #fcd34d;
+  --life-rose: #fda4af;
+  --life-bg: #07131f;
+  --life-section: #0c1b2a;
+  --life-card: #122338;
+  --life-card-hover: #18304a;
+  --life-text: #f8fafc;
+  --life-text-soft: #d7e0ea;
+  --life-muted: #9fb0c3;
+  --life-label: #d6b36a;
+  --life-meta: #7fb7d9;
+  position: relative;
+  overflow: clip;
+  color: var(--life-text-soft);
+  background:
+    radial-gradient(circle at 14% 10%, rgba(125, 211, 252, 0.15), transparent 24%),
+    radial-gradient(circle at 88% 8%, rgba(196, 181, 253, 0.16), transparent 28%),
+    radial-gradient(circle at 68% 24%, rgba(253, 164, 175, 0.1), transparent 22%),
+    radial-gradient(circle at 50% 45%, rgba(103, 232, 249, 0.08), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.026), transparent 18%),
+    var(--life-bg);
+}
+
+.page::before,
+.page::after {
+  content: "";
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 999px;
+  filter: blur(110px);
+  opacity: 0.58;
+}
+
+.page::before {
+  top: 200px;
+  left: -100px;
+  width: 340px;
+  height: 340px;
+  background: rgba(103, 232, 249, 0.14);
+}
+
+.page::after {
+  right: -80px;
+  top: 920px;
+  width: 320px;
+  height: 320px;
+  background: rgba(196, 181, 253, 0.14);
+}
+
+.pageContainer {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 32px, 1280px);
+  margin: 0 auto;
+}
+
+.inlineIcon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  background: linear-gradient(180deg, rgba(7, 19, 31, 0.94), rgba(7, 19, 31, 0.72));
+}
+
+.headerInner,
+.heroMetaRow,
+.heroMetaItem,
+.heroActions,
+.toolShellInner,
+.progressMeta,
+.sliderHeader,
+.sliderValueGroup,
+.toggleRow,
+.toggleSwitch,
+.wheelLegendMeta,
+.wheelLegendValues,
+.scorePanel,
+.resultActions,
+.toolFooterRow,
+.sideChipRow,
+.miniDomainTop,
+.comparisonHeader,
+.comparisonValues,
+.priorityTop,
+.priorityMeta,
+.summaryTop,
+.relatedCardTop {
+  display: flex;
+}
+
+.headerInner {
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 84px;
+}
+
+.headerBrandWrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.headerNav {
+  display: none;
+  align-items: center;
+  gap: 24px;
+}
+
+.headerLink,
+.libraryPill,
+.headerCta,
+.primaryButton,
+.secondaryButton,
+.nextButton,
+.backButton,
+.nextStepButton,
+.relatedCard,
+.faqQuestion {
+  transition:
+    transform 180ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease,
+    color 220ms ease,
+    opacity 220ms ease;
+}
+
+.headerLink,
+.libraryPill,
+.headerCta,
+.primaryButton,
+.secondaryButton,
+.nextButton,
+.backButton,
+.nextStepButton,
+.relatedLink {
+  text-decoration: none;
+}
+
+.headerLink {
+  color: var(--life-muted);
+  font-size: 0.96rem;
+}
+
+.libraryPill,
+.headerCta,
+.primaryButton,
+.secondaryButton,
+.nextButton,
+.backButton,
+.nextStepButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 600;
+}
+
+.libraryPill {
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--life-text-soft);
+  font-size: 0.92rem;
+}
+
+.headerCta,
+.primaryButton,
+.nextButton,
+.nextStepButton {
+  border: 1px solid rgba(125, 211, 252, 0.28);
+  background:
+    linear-gradient(180deg, rgba(125, 211, 252, 0.28), rgba(103, 232, 249, 0.1)),
+    rgba(24, 48, 74, 0.78);
+  box-shadow:
+    0 20px 48px rgba(2, 9, 18, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  color: var(--life-text);
+}
+
+.secondaryButton,
+.backButton {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--life-text-soft);
+}
+
+.headerLink:hover,
+.libraryPill:hover,
+.headerCta:hover,
+.primaryButton:hover,
+.secondaryButton:hover,
+.nextButton:hover,
+.backButton:hover,
+.nextStepButton:hover,
+.relatedCard:hover,
+.faqItem:hover {
+  transform: translateY(-2px);
+}
+
+.headerLink:hover,
+.libraryPill:hover {
+  color: var(--life-text);
+}
+
+.libraryPill:focus-visible,
+.headerLink:focus-visible,
+.headerCta:focus-visible,
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible,
+.nextButton:focus-visible,
+.backButton:focus-visible,
+.nextStepButton:focus-visible,
+.rangeInput:focus-visible,
+.toggleInput:focus-visible + .toggleKnob {
+  outline: 2px solid rgba(125, 211, 252, 0.92);
+  outline-offset: 3px;
+}
+
+.heroSection,
+.section {
+  position: relative;
+  z-index: 1;
+  padding: 80px 0;
+}
+
+.sectionAlt {
+  background:
+    radial-gradient(circle at 18% 26%, rgba(125, 211, 252, 0.06), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0)),
+    rgba(12, 27, 42, 0.42);
+}
+
+.heroGrid {
+  display: grid;
+  gap: 36px;
+  align-items: center;
+}
+
+.heroCopy {
+  max-width: 630px;
+}
+
+.heroEyebrow,
+.sectionEyebrow,
+.domainEyebrow,
+.sideCardEyebrow,
+.visualEyebrow,
+.resultKicker,
+.insightEyebrow,
+.nextStepEyebrow,
+.heroPreviewEyebrow,
+.progressLabel,
+.wheelPanelLabel {
+  margin: 0 0 16px;
+  color: var(--life-label);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  margin: 0;
+  max-width: 10ch;
+  color: var(--life-text);
+  font-size: clamp(2.8rem, 5vw, 5.2rem);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+}
+
+.heroDescription,
+.sectionDescription,
+.resultCopy,
+.resultInterpretation,
+.editorialParagraph,
+.infoCardCopy,
+.summaryCopy,
+.relatedDescription,
+.faqAnswer {
+  margin: 0;
+  color: var(--life-text-soft);
+  line-height: 1.75;
+}
+
+.heroDescription {
+  margin-top: 22px;
+  max-width: 58ch;
+  font-size: 1.08rem;
+}
+
+.heroMetaRow {
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.heroMetaItem {
+  align-items: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--life-text-soft);
+}
+
+.heroMetaIcon {
+  display: inline-flex;
+  color: var(--life-meta);
+}
+
+.heroActions {
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.heroVisualShell {
+  position: relative;
+  min-height: 420px;
+}
+
+.heroGlowA,
+.heroGlowB,
+.wheelGlow,
+.toolShellGlow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.heroGlowA {
+  left: 6%;
+  top: 8%;
+  width: 220px;
+  height: 220px;
+  background: rgba(103, 232, 249, 0.18);
+  animation: floatGlow 9s ease-in-out infinite;
+}
+
+.heroGlowB {
+  right: 4%;
+  bottom: 10%;
+  width: 190px;
+  height: 190px;
+  background: rgba(196, 181, 253, 0.18);
+  animation: floatGlow 11s ease-in-out infinite reverse;
+}
+
+.heroPreviewPanel,
+.toolShell,
+.resultCard,
+.visualCard,
+.bandCard,
+.editorialBlock,
+.dimensionCard,
+.infoCard,
+.nextStepPanel,
+.relatedCard,
+.faqItem,
+.sideCard,
+.domainCard,
+.summaryCard {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 32px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02)),
+    rgba(18, 35, 56, 0.88);
+  box-shadow:
+    0 30px 60px rgba(2, 8, 18, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.11);
+}
+
+.heroPreviewPanel {
+  padding: 28px;
+  scroll-margin-top: 120px;
+}
+
+.heroPreviewHeader,
+.sectionHeading,
+.domainCardHeader,
+.visualHeader {
+  display: grid;
+  gap: 10px;
+}
+
+.heroPreviewHeader {
+  margin-bottom: 22px;
+}
+
+.heroPreviewTitle {
+  margin: 0;
+  color: var(--life-text);
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.previewBadge,
+.metaChip,
+.wheelMetricPill,
+.descriptorPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.88rem;
+}
+
+.previewBadge {
+  color: var(--life-meta);
+}
+
+.heroPreviewGrid {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.heroPreviewStat {
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.heroPreviewStatLabel,
+.scoreLabel,
+.wheelCenterLabel,
+.priorityText,
+.comparisonMeta,
+.summaryValue,
+.bandRange,
+.relatedCategory,
+.relatedTime,
+.fieldNote,
+.toolFooterHint,
+.sideCardFootnote,
+.wheelLegendDescriptor,
+.progressCounter,
+.sliderScaleLabel {
+  color: var(--life-muted);
+  font-size: 0.9rem;
+}
+
+.heroPreviewStatValue,
+.scoreValueSmall,
+.relatedTitle,
+.visualTitle,
+.summaryTitle,
+.priorityTitle,
+.comparisonName,
+.resultTitle,
+.sectionTitle,
+.editorialTitle,
+.infoCardTitle,
+.nextStepTitle,
+.sideCardTitle,
+.domainTitle,
+.bandTitle,
+.dimensionKicker {
+  color: var(--life-text);
+}
+
+.heroPreviewStatValue {
+  font-size: 1.08rem;
+  font-weight: 600;
+}
+
+.sectionHeading {
+  margin-bottom: 30px;
+  max-width: 760px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.sectionDescription {
+  max-width: 66ch;
+}
+
+.toolShell {
+  --balance-shell-glow: rgba(125, 211, 252, 0.18);
+  padding: 1px;
+}
+
+.toolShellGlow {
+  inset: 14% auto auto 8%;
+  width: 280px;
+  height: 280px;
+  background: var(--balance-shell-glow);
+  opacity: 0.82;
+}
+
+.toolShellInner {
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  gap: 1px;
+  padding: 24px;
+}
+
+.toolMain,
+.toolSidebar {
+  min-width: 0;
+}
+
+.progressHeader {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  margin-bottom: 22px;
+  padding: 18px 18px 0;
+  backdrop-filter: blur(18px);
+}
+
+.progressMeta {
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.progressLabel,
+.wheelPanelLabel {
+  margin-bottom: 8px;
+}
+
+.progressCounter {
+  margin: 0;
+}
+
+.progressPercent {
+  margin: 0;
+  color: var(--life-text);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.progressTrack,
+.priorityBarTrack,
+.comparisonTrack,
+.summaryTrack,
+.miniDomainTrack {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.progressTrack {
+  height: 10px;
+}
+
+.progressBar,
+.priorityBarFill,
+.comparisonCurrentFill,
+.summaryFill,
+.miniDomainFill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.progressBar {
+  background: linear-gradient(90deg, var(--life-blue), var(--life-lavender));
+  box-shadow: 0 0 24px rgba(125, 211, 252, 0.22);
+}
+
+.toolContentArea {
+  display: grid;
+  gap: 24px;
+}
+
+.stepTransition {
+  animation: riseIn 260ms ease;
+}
+
+.domainCard {
+  --domain-accent: var(--life-blue);
+  padding: 28px;
+}
+
+.domainCard::before,
+.visualCard::before,
+.resultCard::before,
+.heroPreviewPanel::before,
+.sideCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, color-mix(in srgb, var(--domain-accent, var(--life-blue)) 16%, transparent), transparent 28%);
+  pointer-events: none;
+}
+
+.domainTitleRow {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.domainIcon,
+.summaryIcon,
+.relatedIcon,
+.dimensionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--life-meta);
+}
+
+.domainTitle {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.08;
+}
+
+.domainPrompt {
+  margin: 8px 0 0;
+  color: var(--life-text-soft);
+  line-height: 1.7;
+}
+
+.sliderBlock {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sliderBlockMuted {
+  opacity: 0.7;
+}
+
+.sliderHeader {
+  align-items: start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.sliderLabel {
+  margin: 0 0 6px;
+  color: var(--life-text);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.fieldNote {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.sliderValueGroup {
+  align-items: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sliderValue {
+  color: var(--life-text);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 650;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.descriptorPill {
+  color: var(--life-text-soft);
+}
+
+.rangeInput {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 14px;
+  margin: 4px 0;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(125, 211, 252, 0.7) 0%, rgba(103, 232, 249, 0.8) var(--range-fill, 50%), rgba(255, 255, 255, 0.08) var(--range-fill, 50%), rgba(255, 255, 255, 0.08) 100%);
+  cursor: pointer;
+}
+
+.rangeInput:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: var(--life-text);
+  box-shadow:
+    0 10px 26px rgba(3, 7, 18, 0.35),
+    0 0 0 10px rgba(125, 211, 252, 0.08);
+}
+
+.rangeInput::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  background: var(--life-text);
+  box-shadow:
+    0 10px 26px rgba(3, 7, 18, 0.35),
+    0 0 0 10px rgba(125, 211, 252, 0.08);
+}
+
+.sliderScale {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sliderScaleLabel {
+  line-height: 1.5;
+}
+
+.toggleRow {
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 24px;
+  padding: 0 2px;
+}
+
+.toggleSwitch {
+  position: relative;
+  min-width: 98px;
+  padding: 6px 14px 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--life-text-soft);
+  cursor: pointer;
+}
+
+.toggleInput {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.toggleKnob {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 26px;
+  margin-right: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  vertical-align: middle;
+  transition: background-color 180ms ease;
+}
+
+.toggleKnob::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--life-text);
+  transition: transform 180ms ease;
+}
+
+.toggleInput:checked + .toggleKnob {
+  background: rgba(125, 211, 252, 0.34);
+}
+
+.toggleInput:checked + .toggleKnob::after {
+  transform: translateX(18px);
+}
+
+.toggleText {
+  vertical-align: middle;
+}
+
+.sidebarStack {
+  display: grid;
+  gap: 18px;
+}
+
+.sideCard {
+  padding: 22px;
+}
+
+.sideCardTitle {
+  margin: 0;
+  font-size: 1.16rem;
+  line-height: 1.2;
+}
+
+.sideCardCopy {
+  margin: 12px 0 0;
+  color: var(--life-text-soft);
+  line-height: 1.7;
+}
+
+.sideChipRow {
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.metaChip {
+  color: var(--life-meta);
+}
+
+.sideCardFootnote {
+  margin: 12px 0 0;
+}
+
+.miniDomainList {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.miniDomainItem {
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.miniDomainItemActive {
+  border-color: rgba(125, 211, 252, 0.24);
+  background: rgba(125, 211, 252, 0.06);
+}
+
+.miniDomainTop {
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: var(--life-text-soft);
+  font-size: 0.95rem;
+}
+
+.miniDomainTrack {
+  height: 8px;
+}
+
+.wheelPanel {
+  display: grid;
+  gap: 18px;
+}
+
+.wheelPanelCompact {
+  gap: 16px;
+}
+
+.wheelFrame {
+  position: relative;
+  width: min(100%, 430px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 38%),
+    rgba(7, 19, 31, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wheelFrameCompact {
+  width: min(100%, 350px);
+}
+
+.wheelGlow {
+  inset: 22% auto auto 26%;
+  width: 160px;
+  height: 160px;
+  background: rgba(125, 211, 252, 0.12);
+}
+
+.wheelSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.wheelGrid,
+.wheelAxis {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+}
+
+.wheelIdealLine {
+  fill: rgba(255, 255, 255, 0.02);
+  stroke: rgba(248, 250, 252, 0.5);
+  stroke-dasharray: 8 8;
+  stroke-width: 1.5;
+}
+
+.wheelCurrentArea {
+  stroke: none;
+}
+
+.wheelCurrentOutline {
+  fill: none;
+  stroke: rgba(248, 250, 252, 0.86);
+  stroke-width: 2;
+}
+
+.wheelIdealMarker {
+  fill: rgba(7, 19, 31, 0.9);
+  stroke-width: 1.5;
+}
+
+.wheelMarker {
+  stroke: rgba(248, 250, 252, 0.88);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 14px rgba(125, 211, 252, 0.16));
+}
+
+.wheelMarkerActive {
+  stroke-width: 2.6;
+  filter: drop-shadow(0 0 16px rgba(196, 181, 253, 0.22));
+}
+
+.wheelCenterBadge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  padding: 10px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05)),
+    rgba(12, 27, 42, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 18px 40px rgba(1, 8, 18, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  text-align: center;
+}
+
+.wheelCenterValue {
+  display: block;
+  color: var(--life-text);
+  font-size: 2rem;
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.wheelCenterLabel {
+  margin-top: 6px;
+}
+
+.wheelLabel {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  background: rgba(7, 19, 31, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--life-text-soft);
+  font-size: 0.78rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.wheelLabelActive {
+  background: color-mix(in srgb, var(--domain-accent) 14%, rgba(7, 19, 31, 0.86));
+  border-color: color-mix(in srgb, var(--domain-accent) 30%, rgba(255, 255, 255, 0.08));
+  color: var(--life-text);
+}
+
+.wheelLabelDot,
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--domain-accent, var(--life-blue));
+  flex: 0 0 auto;
+}
+
+.wheelLabelShort {
+  line-height: 1;
+}
+
+.wheelLegend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.wheelLegendItem {
+  padding: 14px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wheelLegendMeta,
+.wheelLegendValues {
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.wheelLegendLabel {
+  color: var(--life-text);
+  font-size: 0.95rem;
+}
+
+.wheelLegendValue {
+  color: var(--life-text);
+  font-weight: 600;
+}
+
+.wheelLegendIdeal {
+  color: var(--life-meta);
+  font-size: 0.9rem;
+}
+
+.wheelLegendDescriptor {
+  margin: 10px 0 0;
+}
+
+.wheelFooterRow {
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.wheelMetricPill {
+  color: var(--life-text-soft);
+}
+
+.wheelGapNote {
+  margin: 0;
+  color: var(--life-muted);
+  line-height: 1.6;
+}
+
+.toolFooterRow {
+  align-items: center;
+  gap: 16px;
+}
+
+.toolFooterMeta {
+  flex: 1 1 auto;
+}
+
+.toolFooterHint {
+  display: block;
+  line-height: 1.65;
+}
+
+.nextButton:disabled,
+.backButton:disabled {
+  opacity: 0.45;
+  transform: none;
+  cursor: not-allowed;
+}
+
+.resultCard {
+  --result-glow: rgba(125, 211, 252, 0.22);
+  --result-gradient: linear-gradient(135deg, var(--life-blue), var(--life-lavender));
+  padding: 1px;
+}
+
+.resultCard::after {
+  content: "";
+  position: absolute;
+  inset: 14% auto auto 12%;
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  background: var(--result-glow);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.resultGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 28px;
+  padding: 28px;
+}
+
+.resultVisual {
+  display: grid;
+  place-items: center;
+}
+
+.resultSummary {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.resultTitle {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.1rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.resultCopy,
+.resultInterpretation,
+.resultSignal {
+  font-size: 1rem;
+}
+
+.resultSignal {
+  margin: 0;
+  padding: 16px 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--life-text-soft);
+  line-height: 1.7;
+}
+
+.scorePanel {
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.scoreMetric {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 150px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.scoreValue,
+.scoreValueSmall {
+  display: block;
+  line-height: 1;
+}
+
+.scoreValue {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 650;
+  letter-spacing: -0.06em;
+}
+
+.scoreValueSmall {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.resultInsightGrid {
+  display: grid;
+  gap: 14px;
+}
+
+.insightCard {
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.insightEyebrow {
+  margin: 0 0 8px;
+}
+
+.insightCopy {
+  margin: 0;
+  color: var(--life-text-soft);
+  line-height: 1.7;
+}
+
+.resultActions {
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.insightsGrid,
+.bandGrid,
+.dimensionGrid,
+.infoCardGrid,
+.relatedGrid,
+.faqList,
+.summaryGrid {
+  display: grid;
+  gap: 18px;
+}
+
+.visualCard {
+  padding: 24px;
+}
+
+.visualTitle {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.12;
+}
+
+.visualCopy {
+  margin: 0;
+  color: var(--life-text-soft);
+  line-height: 1.7;
+}
+
+.priorityList,
+.comparisonList {
+  display: grid;
+  gap: 14px;
+}
+
+.priorityItem,
+.comparisonRow {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.priorityTop,
+.comparisonHeader {
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.priorityMeta {
+  gap: 14px;
+}
+
+.priorityRank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--life-label);
+  font-weight: 700;
+}
+
+.priorityTitle,
+.comparisonName,
+.summaryTitle {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.priorityText,
+.comparisonMeta,
+.summaryCopy {
+  margin: 6px 0 0;
+}
+
+.priorityScore,
+.summaryValue {
+  color: var(--life-text);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.priorityBarTrack,
+.summaryTrack {
+  height: 10px;
+}
+
+.comparisonValues {
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--life-meta);
+  font-size: 0.9rem;
+}
+
+.comparisonTrack {
+  height: 12px;
+}
+
+.comparisonIdealLine {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 2px;
+  border-left: 2px dashed rgba(248, 250, 252, 0.72);
+  transform: translateX(-50%);
+}
+
+.summaryGrid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.summaryCard {
+  padding: 18px;
+  border-radius: 24px;
+}
+
+.summaryTop {
+  gap: 14px;
+  align-items: start;
+}
+
+.summaryIcon {
+  color: var(--life-meta);
+}
+
+.summaryTrack {
+  margin-top: 18px;
+}
+
+.summaryValue {
+  margin: 12px 0 0;
+}
+
+.returnLibraryRow {
+  display: flex;
+  justify-content: center;
+  margin-top: 26px;
+}
+
+.bandCard,
+.editorialBlock,
+.dimensionCard,
+.infoCard,
+.nextStepPanel,
+.relatedCard,
+.faqItem {
+  padding: 22px;
+}
+
+.bandSwatch {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.bandRange,
+.relatedCategory,
+.relatedTime {
+  margin: 0 0 8px;
+}
+
+.bandTitle,
+.editorialTitle,
+.infoCardTitle,
+.nextStepTitle,
+.relatedTitle {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.12;
+}
+
+.bandCopy,
+.infoCardCopy,
+.nextStepDescription,
+.relatedDescription {
+  margin: 12px 0 0;
+  line-height: 1.7;
+}
+
+.editorialStack {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.editorialParagraph {
+  margin-top: 14px;
+}
+
+.dimensionCardTop {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.dimensionSummary {
+  margin: 6px 0 0;
+  color: var(--life-muted);
+  line-height: 1.65;
+}
+
+.nextStepLayout {
+  display: grid;
+  gap: 18px;
+}
+
+.nextStepPanel {
+  align-content: start;
+}
+
+.nextStepDescription {
+  color: var(--life-text-soft);
+}
+
+.nextStepButton {
+  margin-top: 20px;
+  width: fit-content;
+}
+
+.relatedGrid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.relatedCard {
+  display: grid;
+  gap: 10px;
+}
+
+.relatedCardTop {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.relatedTime {
+  color: var(--life-meta);
+}
+
+.relatedLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: var(--life-text);
+  font-weight: 600;
+}
+
+.faqList {
+  grid-template-columns: 1fr;
+}
+
+.faqItem {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025)),
+    rgba(18, 35, 56, 0.8);
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+  color: var(--life-text);
+  font-weight: 600;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqAnswer {
+  margin-top: 14px;
+}
+
+@keyframes floatGlow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (min-width: 768px) {
+  .heroPreviewGrid,
+  .bandGrid,
+  .infoCardGrid,
+  .faqList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resultInsightGrid,
+  .dimensionGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .insightsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .toolFooterRow {
+    justify-content: space-between;
+  }
+
+  .nextStepLayout {
+    grid-template-columns: minmax(0, 1.4fr) minmax(320px, 0.9fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .headerNav {
+    display: flex;
+  }
+
+  .heroGrid {
+    grid-template-columns: minmax(0, 1.02fr) minmax(420px, 0.98fr);
+  }
+
+  .heroVisualShell {
+    min-height: 560px;
+  }
+
+  .toolShellInner {
+    grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+    align-items: start;
+  }
+
+  .toolShellInner,
+  .resultGrid {
+    display: grid;
+  }
+
+  .toolSidebar {
+    position: sticky;
+    top: 110px;
+  }
+
+  .resultGrid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .resultVisual {
+    padding-right: 12px;
+  }
+
+  .bandGrid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .dimensionGrid,
+  .infoCardGrid,
+  .faqList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 959px) {
+  .headerInner {
+    flex-wrap: wrap;
+    padding: 12px 0;
+  }
+
+  .headerCta {
+    width: 100%;
+  }
+
+  .toolSidebar {
+    order: -1;
+  }
+}
+
+@media (max-width: 767px) {
+  .heroSection,
+  .section {
+    padding: 68px 0;
+  }
+
+  .heroTitle {
+    max-width: none;
+  }
+
+  .heroPreviewPanel,
+  .toolShellInner,
+  .resultGrid,
+  .visualCard,
+  .domainCard,
+  .editorialBlock,
+  .bandCard,
+  .dimensionCard,
+  .infoCard,
+  .nextStepPanel,
+  .relatedCard,
+  .faqItem,
+  .sideCard {
+    padding: 20px;
+  }
+
+  .heroActions,
+  .resultActions,
+  .toolFooterRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolFooterMeta {
+    width: 100%;
+  }
+
+  .nextButton,
+  .backButton,
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+
+  .progressHeader {
+    padding-inline: 0;
+  }
+
+  .wheelLegend {
+    grid-template-columns: 1fr;
+  }
+
+  .wheelLabel {
+    font-size: 0.72rem;
+    padding-inline: 8px;
+  }
+
+  .toggleRow,
+  .sliderHeader,
+  .comparisonHeader,
+  .priorityTop {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .comparisonValues,
+  .sliderValueGroup {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroGlowA,
+  .heroGlowB,
+  .stepTransition,
+  .headerLink,
+  .libraryPill,
+  .headerCta,
+  .primaryButton,
+  .secondaryButton,
+  .nextButton,
+  .backButton,
+  .nextStepButton,
+  .relatedCard,
+  .faqQuestion {
+    animation: none;
+    transition: none;
+  }
+}
+
+
+/* Premium refinement layer */
+.heroSection {
+  padding: 82px 0 60px;
+}
+
+.heroGrid {
+  gap: 38px;
+}
+
+.heroTitle {
+  margin-bottom: 26px;
+  line-height: 1.06;
+}
+
+.heroDescription {
+  max-width: 48rem;
+}
+
+.heroDescription,
+.sectionDescription,
+.stepHint,
+.scenarioDescription,
+.previewSummary,
+.sideCardCopy,
+.sideCardFootnote,
+.resultInterpretation,
+.visualCopy,
+.visualInsight,
+.bandCopy,
+.dimensionSummary,
+.infoCardCopy,
+.nextStepDescription,
+.relatedDescription,
+.faqAnswer,
+.editorialParagraph,
+.resultSummary,
+.scenarioPrompt {
+  line-height: 1.78;
+  opacity: 0.82;
+}
+
+.heroVisualShell,
+.livePreviewCard,
+.previewCard,
+.sideCard,
+.visualCard {
+  transition: transform 300ms ease, box-shadow 300ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.heroVisualShell:hover,
+.livePreviewCard:hover,
+.previewCard:hover,
+.sideCard:hover,
+.visualCard:hover {
+  transform: translateY(-4px);
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 14px 0 auto;
+  height: 220px;
+  background: radial-gradient(circle at 20% 30%, rgba(120, 160, 255, 0.06), transparent 40%);
+  pointer-events: none;
+}
+
+.sectionHeading {
+  max-width: 860px;
+  margin-bottom: 36px;
+}
+
+.sectionTitle {
+  margin: 18px 0;
+  line-height: 1.06;
+}
+
+.sectionDescription {
+  max-width: 56ch;
+}
+
+.toolShell {
+  padding: 22px;
+}
+
+.toolContentArea,
+.nextStepLayout {
+  gap: 24px;
+}
+
+.progressHeader {
+  padding: 18px 20px;
+}
+
+.progressTrack {
+  height: 12px;
+  margin-top: 16px;
+}
+
+.progressFill {
+  box-shadow: 0 0 22px rgba(125, 211, 252, 0.18);
+}
+
+.stepCard,
+.scenarioShell {
+  padding: 24px;
+}
+
+.scenarioGrid,
+.segmentedGrid,
+.tripleSliderGrid,
+.clusterGrid,
+.bandGrid,
+.dimensionGrid,
+.infoCardGrid,
+.relatedGrid,
+.insightsGrid,
+.outputGrid,
+.heatGrid,
+.choiceGrid,
+.previewStatsGrid,
+.driverGrid {
+  gap: 18px;
+}
+
+.scenarioCard,
+.choiceCard,
+.choiceButton,
+.segmentButton,
+.chipButton,
+.rankItem,
+.clusterCard,
+.bandCard,
+.dimensionCard,
+.infoCard,
+.relatedCard,
+.nextStepPanel,
+.outputCard,
+.heatCell,
+.previewMetricCard,
+.stackCard,
+.driverCard {
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease, background 220ms ease;
+}
+
+.scenarioCard:hover,
+.choiceCard:hover,
+.choiceButton:hover,
+.segmentButton:hover,
+.chipButton:hover,
+.rankItem:hover,
+.clusterCard:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.024)),
+    rgba(14, 29, 45, 0.82);
+  box-shadow:
+    0 30px 76px rgba(2, 10, 20, 0.28),
+    0 0 0 1px rgba(125, 211, 252, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+
+.previewCard,
+.sideCard,
+.visualCard,
+.livePreviewCard {
+  padding: 22px;
+  box-shadow:
+    0 30px 76px rgba(2, 10, 20, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 0 40px rgba(125, 211, 252, 0.04);
+}
+
+.bandCard {
+  padding: 24px;
+}
+
+.bandCard::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 0;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(125, 211, 252, 0.88), rgba(214, 179, 106, 0.66), transparent);
+}
+
+.bandCard:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 34px 88px rgba(2, 10, 20, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.dimensionCard {
+  padding: 24px;
+}
+
+.dimensionCardTop {
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.dimensionIcon,
+.relatedIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.dimensionKicker {
+  margin: 0 0 10px;
+  font-size: 1.18rem;
+}
+
+.infoCard {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(125, 211, 252, 0.06), transparent 32%),
+    linear-gradient(180deg, rgba(14, 28, 43, 0.94), rgba(10, 22, 35, 0.98));
+}
+
+.infoCard:hover {
+  transform: scale(1.02);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.editorialBlock {
+  max-width: 68ch;
+}
+
+.editorialParagraph {
+  max-width: 66ch;
+  margin: 0 0 24px;
+  line-height: 1.84;
+}
+
+.nextStepPanel {
+  padding: 26px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(125, 211, 252, 0.16), transparent 38%),
+    radial-gradient(circle at 0% 100%, rgba(214, 179, 106, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(25, 48, 74, 0.92), rgba(16, 31, 48, 0.96));
+  box-shadow:
+    0 34px 88px rgba(2, 10, 20, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.nextStepTitle {
+  margin: 12px 0 14px;
+}
+
+.nextStepDescription {
+  max-width: 44ch;
+}
+
+.nextStepButton {
+  margin-top: 24px;
+}
+
+.nextStepButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 60px rgba(4, 14, 25, 0.32);
+}
+
+.relatedGrid {
+  gap: 20px;
+}
+
+.relatedCard {
+  padding: 22px;
+}
+
+.relatedCard:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 32px 84px rgba(2, 10, 20, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.faqList {
+  gap: 16px;
+}
+
+
+/* Report-grade refinement layer */
+.heroTitle,
+.sectionTitle,
+.resultTitle {
+  text-wrap: balance;
+}
+
+.heroTitle {
+  line-height: 1.05;
+}
+
+.sectionTitle {
+  margin-top: 24px;
+  line-height: 1.06;
+}
+
+.heroDescription,
+.sectionDescription,
+.stepHint,
+.choiceDescription,
+.previewSummary,
+.sideCardCopy,
+.sideCardFootnote,
+.resultSummary,
+.resultInterpretation,
+.resultCalloutCopy,
+.resultAlignmentNote,
+.resultCopy,
+.resultDescriptor,
+.visualCopy,
+.visualInsight,
+.bandCopy,
+.dimensionSummary,
+.infoCardCopy,
+.nextStepDescription,
+.relatedDescription,
+.editorialParagraph,
+.faqAnswer,
+.toolFooterHint,
+.insightCopy,
+.signalBarDescription,
+.securityCardCopy,
+.statNote,
+.footerDescription,
+.footerNote,
+.footerClosing {
+  color: rgba(215, 224, 234, 0.74);
+  line-height: 1.8;
+}
+
+.heroDescription,
+.sectionDescription {
+  max-width: 56ch;
+}
+
+.section {
+  padding: 104px 0;
+}
+
+.sectionHeading {
+  margin-bottom: 40px;
+}
+
+.sectionHeading,
+.stepCardHeader,
+.resultCopy,
+.resultSummary,
+.editorialBlock {
+  max-width: 72ch;
+}
+
+.toolShell,
+.toolShellInner {
+  box-shadow:
+    0 44px 108px rgba(1, 8, 16, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.015);
+}
+
+.progressHeader {
+  padding: 20px 22px;
+}
+
+.progressTrack {
+  height: 12px;
+}
+
+.progressFill {
+  box-shadow:
+    0 0 20px rgba(125, 211, 252, 0.18),
+    0 0 42px rgba(125, 211, 252, 0.05);
+}
+
+.stepCard,
+.scenarioShell {
+  padding: 26px;
+}
+
+.stepQuestion {
+  max-width: 20ch;
+  line-height: 1.08;
+}
+
+.stepHint {
+  max-width: 58ch;
+}
+
+.choiceGrid,
+.segmentedGrid,
+.scenarioGrid,
+.choiceGridCards,
+.choiceGridStatement,
+.clusterGrid,
+.driverGrid,
+.bandGrid,
+.dimensionGrid,
+.infoCardGrid,
+.relatedGrid,
+.insightsGrid,
+.outputGrid,
+.heatGrid,
+.previewStatsGrid,
+.resultInsightGrid,
+.resultCalloutGrid,
+.scorePanel {
+  gap: 18px;
+}
+
+.choiceButton,
+.chipButton,
+.segmentButton,
+.scenarioCard,
+.choiceCard,
+.rankItem,
+.clusterCard,
+.scoreMetric,
+.resultCallout,
+.insightCard,
+.resultDriverPill,
+.resultSignal,
+.metaChip,
+.livePreviewBadge,
+.relatedTime,
+.toolCategoryTag {
+  transition:
+    transform 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.choiceButton:hover,
+.chipButton:hover,
+.segmentButton:hover,
+.scenarioCard:hover,
+.choiceCard:hover,
+.rankItem:hover,
+.clusterCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(11, 24, 38, 0.62);
+  box-shadow:
+    0 24px 56px rgba(2, 10, 20, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.choiceButtonSelected,
+.chipButtonSelected,
+.segmentButtonSelected,
+.choiceCardSelected,
+.scenarioCardSelected,
+.rankItemActive {
+  box-shadow:
+    0 20px 48px rgba(4, 14, 25, 0.28),
+    0 0 0 1px rgba(125, 211, 252, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.livePreviewCard,
+.previewCard,
+.sideCard,
+.visualCard,
+.signalBarsCard,
+.resultCard,
+.bandCard,
+.dimensionCard,
+.infoCard,
+.nextStepPanel,
+.relatedCard,
+.scoreMetric,
+.resultCallout,
+.insightCard,
+.editorialBlock {
+  box-shadow:
+    0 30px 72px rgba(2, 10, 20, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.livePreviewCard,
+.previewCard,
+.sideCard,
+.visualCard,
+.signalBarsCard {
+  padding: 24px;
+}
+
+.livePreviewTitle,
+.sideCardTitle,
+.visualTitle,
+.bandTitle,
+.dimensionKicker,
+.infoCardTitle,
+.nextStepTitle,
+.relatedTitle,
+.signalBarTitle,
+.recoverySummaryTitle,
+.resultCalloutLabel,
+.insightEyebrow,
+.resultKicker {
+  letter-spacing: -0.02em;
+}
+
+.resultSection {
+  padding-top: 34px;
+}
+
+.resultCard {
+  overflow: hidden;
+}
+
+.resultGrid {
+  gap: 30px;
+  padding: 30px;
+}
+
+.resultVisual,
+.resultDialWrap {
+  align-content: start;
+}
+
+.resultSummary,
+.resultCopy {
+  gap: 16px;
+  align-content: start;
+}
+
+.resultSignal {
+  padding: 16px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.resultDriverRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.resultDriverPill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(248, 250, 252, 0.88);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.resultDriverPill:hover,
+.resultSignal:hover,
+.scoreMetric:hover,
+.resultCallout:hover,
+.insightCard:hover,
+.relatedCard:hover,
+.bandCard:hover,
+.dimensionCard:hover,
+.infoCard:hover,
+.nextStepPanel:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 32px 78px rgba(2, 10, 20, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.scoreMetric,
+.resultCallout,
+.insightCard,
+.signalBarCard,
+.sourceSplitItem,
+.spilloverCard,
+.driverCard,
+.outputCard,
+.heatCell,
+.previewMetricCard,
+.stackCard {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(125, 211, 252, 0.04), transparent 36%),
+    rgba(255, 255, 255, 0.04);
+}
+
+.scoreValue,
+.resultScoreValue {
+  line-height: 0.96;
+}
+
+.scoreLabel,
+.resultScoreLabel,
+.resultCalloutLabel,
+.insightEyebrow,
+.resultKicker,
+.visualEyebrow,
+.sideCardEyebrow,
+.sectionEyebrow,
+.heroEyebrow,
+.dimensionEyebrow,
+.bandEyebrow,
+.relatedMeta,
+.relatedCategory,
+.toolType,
+.toolTime {
+  color: rgba(214, 179, 106, 0.92);
+}
+
+.resultInterpretation,
+.resultCopy,
+.resultSummary,
+.insightCopy,
+.resultCalloutCopy {
+  max-width: 60ch;
+}
+
+.dimensionCardTop,
+.relatedCardTop,
+.signalBarMeta,
+.visualCardHeader,
+.livePreviewTop {
+  margin-bottom: 18px;
+}
+
+.dimensionIcon,
+.relatedIcon,
+.signalBarIcon,
+.statIconWrap,
+.resultIconWrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.editorialBlock {
+  max-width: 68ch;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(125, 211, 252, 0.04), transparent 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.02)),
+    rgba(10, 22, 35, 0.38);
+}
+
+.editorialParagraph {
+  max-width: 64ch;
+  margin-bottom: 26px;
+}
+
+.nextStepPanel {
+  padding: 28px;
+}
+
+.nextStepDescription {
+  max-width: 46ch;
+}
+
+.relatedCard {
+  padding: 24px;
+}
+
+.relatedDescription {
+  max-width: 34ch;
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 84px 0;
+  }
+
+  .resultGrid {
+    padding: 24px;
+  }
+
+  .stepCard,
+  .scenarioShell,
+  .editorialBlock,
+  .nextStepPanel,
+  .relatedCard,
+  .bandCard,
+  .dimensionCard,
+  .infoCard,
+  .livePreviewCard,
+  .previewCard,
+  .sideCard,
+  .visualCard,
+  .signalBarsCard {
+    padding: 22px;
+  }
+
+  .stepQuestion {
+    max-width: none;
+  }
+}
+/* Shared layout correction layer */
+.bandGrid {
+  width: 100%;
+  align-items: stretch;
+}
+
+.bandCard {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 0;
+  padding: 20px 18px 18px;
+  overflow: visible;
+}
+
+.bandRange,
+.bandDescriptor {
+  line-height: 1.32;
+}
+
+.bandCopy {
+  max-width: none;
+  line-height: 1.72;
+  overflow-wrap: anywhere;
+}
+
+.resultGrid {
+  align-items: start;
+}
+
+.resultCopy,
+.resultSummary {
+  max-width: min(100%, 68ch);
+}
+
+.resultCalloutGrid {
+  align-items: stretch;
+}
+
+.resultCallout,
+.resultDriverPill,
+.resultSignal,
+.sideCard,
+.livePreviewCard,
+.previewCard,
+.visualCard,
+.signalBarsCard {
+  overflow: visible;
+  min-height: 0;
+}
+
+.resultDriverPill {
+  align-items: flex-start;
+  min-height: 0;
+  padding: 10px 14px;
+  line-height: 1.45;
+  white-space: normal;
+}
+
+.sideCardTitle,
+.resultTitle,
+.bandTitle {
+  overflow-wrap: anywhere;
+}
+
+.sideCardCopy,
+.sideCardFootnote,
+.resultCalloutCopy,
+.resultSummary,
+.resultInterpretation,
+.resultSignal {
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 1200px) {
+  .bandGrid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .bandCard {
+    padding: 18px 18px 16px;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 960px) {
+  .bandGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 959px) and (min-width: 768px) {
+  .bandGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .bandGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bandCard,
+  .resultCallout {
+    padding: 18px;
+  }
+}
+
+/* Editorial width correction layer */
+.editorialStack {
+  width: 100%;
+}
+
+@media (min-width: 960px) {
+  .editorialStack {
+    gap: 22px;
+  }
+
+  .editorialStack .editorialBlock {
+    width: 100%;
+    max-width: min(100%, 1080px);
+  }
+
+  .editorialStack .editorialParagraph {
+    max-width: 88ch;
+  }
+}
+
+@media (min-width: 1200px) {
+  .editorialStack .editorialBlock {
+    max-width: min(100%, 1120px);
+  }
+
+  .editorialStack .editorialParagraph {
+    max-width: 92ch;
+  }
+}
+
+@media (max-width: 959px) {
+  .editorialStack .editorialBlock,
+  .editorialStack .editorialParagraph {
+    max-width: none;
+  }
+}

@@ -1,0 +1,175 @@
+import {
+  attachmentDimensions,
+  attachmentFaqItems,
+  attachmentProfiles,
+  attachmentStoryBlock,
+  dimensionEditorial,
+  increaseBlocks,
+  meaningBlocks,
+  nextStepPanel,
+  nextStepParagraphs,
+  reductionBlocks,
+  relatedAttachmentTools,
+} from "@/data/attachment-pattern-spotter";
+import { EditorialStoryCard } from "@/components/tools/editorial-story-card";
+import { renderIcon } from "@/components/tools/icons";
+import { PremiumFaqList } from "@/components/tools/premium-faq-list";
+import styles from "./attachment-pattern-spotter.module.css";
+import { RelatedToolsPanel } from "./related-tools-panel";
+import { SeoContentSection } from "./seo-content-section";
+
+export function AttachmentPatternEditorial() {
+  return (
+    <>
+      <SeoContentSection
+        description="Read the profile labels alongside the editorial context below so the output becomes a thoughtful explanation of relational behavior, not just a category."
+        eyebrow="Reading the profile"
+        id="what-this-result-usually-means"
+        title="What this result usually means"
+      >
+        <div className={styles.profileBandGrid}>
+          {attachmentProfiles.map((profile) => (
+            <article className={styles.profileBandCard} key={profile.key}>
+              <div
+                className={styles.profileBandSwatch}
+                style={{ background: `linear-gradient(90deg, ${profile.gradientFrom}, ${profile.gradientTo})` }}
+              />
+              <h3 className={styles.profileBandTitle}>{profile.title}</h3>
+              <p className={styles.profileBandDescriptor}>{profile.descriptor}</p>
+              <p className={styles.profileBandCopy}>{profile.summary}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className={styles.editorialStack}>
+          {meaningBlocks.map((block) => (
+            <article className={styles.editorialBlock} key={block.title}>
+              <h3 className={styles.editorialTitle}>{block.title}</h3>
+              {block.paragraphs.map((paragraph) => (
+                <p className={styles.editorialParagraph} key={paragraph}>
+                  {paragraph}
+                </p>
+              ))}
+            </article>
+          ))}
+        </div>
+
+        <EditorialStoryCard story={attachmentStoryBlock} />
+      </SeoContentSection>
+
+      <SeoContentSection
+        description="These four relational dimensions help explain why connection can feel steady, activating, distancing, or internally conflicted in different people."
+        eyebrow="Relational dimensions"
+        id="attachment-dimensions"
+        title="The 4 dimensions of attachment patterning"
+      >
+        <div className={styles.dimensionGrid}>
+          {dimensionEditorial.map((block) => {
+            const dimension = attachmentDimensions.find((item) => item.key === block.key);
+
+            if (!dimension) {
+              return null;
+            }
+
+            return (
+              <article className={styles.dimensionCard} key={block.key}>
+                <div className={styles.dimensionCardTop}>
+                  <span className={styles.dimensionIcon}>{renderIcon(dimension.icon, styles.inlineIcon)}</span>
+                  <div>
+                    <p className={styles.dimensionKicker}>{dimension.label}</p>
+                    <p className={styles.dimensionSummary}>{dimension.description}</p>
+                  </div>
+                </div>
+                {block.paragraphs.map((paragraph) => (
+                  <p className={styles.editorialParagraph} key={paragraph}>
+                    {paragraph}
+                  </p>
+                ))}
+              </article>
+            );
+          })}
+        </div>
+      </SeoContentSection>
+
+      <SeoContentSection
+        description="Relational responses are usually shaped over time through protection, expectation, and repeated emotional learning."
+        eyebrow="What shapes the response"
+        id="what-shapes-relational-responses"
+        title="What tends to shape relational responses"
+      >
+        <div className={styles.infoCardGrid}>
+          {increaseBlocks.map((block) => (
+            <article className={styles.infoCard} key={block.title}>
+              <h3 className={styles.infoCardTitle}>{block.title}</h3>
+              <p className={styles.infoCardCopy}>{block.body}</p>
+            </article>
+          ))}
+        </div>
+      </SeoContentSection>
+
+      <SeoContentSection
+        description="More relational stability usually grows through slower interpretation, clearer needs, and a better understanding of protection patterns."
+        eyebrow="What builds steadier connection"
+        id="what-helps-create-more-stability"
+        title="What helps create more stability"
+      >
+        <div className={styles.infoCardGrid}>
+          {reductionBlocks.map((block) => (
+            <article className={styles.infoCard} key={block.title}>
+              <h3 className={styles.infoCardTitle}>{block.title}</h3>
+              <p className={styles.infoCardCopy}>{block.body}</p>
+            </article>
+          ))}
+        </div>
+      </SeoContentSection>
+
+      <SeoContentSection
+        description="Use the profile to relate to your pattern with more clarity and compassion, not to judge yourself for having one."
+        eyebrow="Working with the pattern"
+        id="what-to-do-next"
+        title="What to do next"
+      >
+        <div className={styles.nextStepLayout}>
+          <div className={styles.editorialBlock}>
+            {nextStepParagraphs.map((paragraph) => (
+              <p className={styles.editorialParagraph} key={paragraph}>
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          <aside className={styles.nextStepPanel}>
+            <p className={styles.nextStepEyebrow}>{nextStepPanel.eyebrow}</p>
+            <h3 className={styles.nextStepTitle}>{nextStepPanel.title}</h3>
+            <p className={styles.nextStepDescription}>{nextStepPanel.description}</p>
+            <button className={styles.nextStepButton} type="button">
+              {nextStepPanel.buttonLabel}
+            </button>
+          </aside>
+        </div>
+      </SeoContentSection>
+
+      <SeoContentSection
+        description="Continue inside the same premium tool ecosystem with adjacent tools for clarity, boundaries, triggers, and confidence."
+        eyebrow="Related relationship tools"
+        id="related-tools"
+        title="Related tools"
+      >
+        <RelatedToolsPanel tools={relatedAttachmentTools} />
+      </SeoContentSection>
+
+      <SeoContentSection
+        description="Respectful answers to the questions people usually ask once the profile starts explaining their relationship reactions more clearly."
+        eyebrow="Questions after the profile"
+        id="faq"
+        title="Attachment profile FAQ"
+      >
+        <PremiumFaqList
+          accent="#FDA4AF"
+          intro="These answers help you read the profile as a protection pattern, not a fixed label or a judgment about how good you are at relationships."
+          items={attachmentFaqItems}
+        />
+      </SeoContentSection>
+    </>
+  );
+}
