@@ -110,3 +110,51 @@
     padding: 48px;
   }
 }
+
+/* Premium design system pass */
+.page {
+  background:
+    radial-gradient(circle at top, rgba(124, 143, 184, 0.16), transparent 30%),
+    linear-gradient(180deg, rgba(18, 24, 43, 0.96), rgba(11, 16, 32, 1) 28%);
+}
+
+.backLink {
+  border-color: var(--tools-border);
+  background:
+    linear-gradient(180deg, rgba(245, 241, 232, 0.04), transparent 42%),
+    rgba(18, 24, 43, 0.88);
+  color: var(--tools-text-soft);
+}
+
+.backLink:hover {
+  color: var(--tools-text);
+  border-color: var(--tools-border-strong);
+}
+
+.header,
+.section {
+  border-color: var(--tools-border);
+  background:
+    radial-gradient(circle at 12% 14%, rgba(124, 143, 184, 0.1), transparent 30%),
+    linear-gradient(180deg, rgba(245, 241, 232, 0.04), transparent 34%),
+    linear-gradient(180deg, rgba(18, 24, 43, 0.98), rgba(11, 16, 32, 0.99));
+  box-shadow: var(--tools-shadow);
+}
+
+.eyebrow {
+  color: var(--tools-label);
+}
+
+.title,
+.sectionTitle {
+  font-family: var(--tools-font-stack);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.intro,
+.sectionBody,
+.sectionParagraph,
+.bulletItem {
+  color: var(--tools-text-soft);
+}

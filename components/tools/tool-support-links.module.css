@@ -86,3 +86,44 @@
     justify-content: space-between;
   }
 }
+
+/* Premium design system pass */
+.supportCard {
+  border-color: var(--tools-border);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top left, rgba(124, 143, 184, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(245, 241, 232, 0.04), transparent 34%),
+    linear-gradient(180deg, rgba(22, 31, 53, 0.98), rgba(18, 24, 43, 0.99));
+  box-shadow: var(--tools-shadow);
+}
+
+.supportHeading {
+  color: var(--tools-text);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.supportCopy {
+  color: var(--tools-text-soft);
+}
+
+.supportLink {
+  border-color: var(--tools-border);
+  background:
+    linear-gradient(180deg, rgba(245, 241, 232, 0.04), transparent 42%),
+    rgba(18, 24, 43, 0.88);
+  color: var(--tools-text);
+}
+
+.supportLink:hover {
+  border-color: var(--tools-border-strong);
+  background:
+    linear-gradient(180deg, rgba(245, 241, 232, 0.06), transparent 42%),
+    rgba(22, 31, 53, 0.94);
+  box-shadow: var(--tools-shadow-hover);
+}
+
+.supportLinkSecondary {
+  color: var(--tools-text-soft);
+}

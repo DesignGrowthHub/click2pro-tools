@@ -167,3 +167,41 @@
     line-height: 1.74;
   }
 }
+
+/* Premium design system pass */
+.storyCard {
+  border-color: var(--tools-border);
+  background:
+    radial-gradient(circle at 12% 14%, rgba(200, 168, 107, 0.12) 0%, transparent 32%),
+    linear-gradient(180deg, rgba(245, 241, 232, 0.04), transparent 34%),
+    linear-gradient(180deg, rgba(18, 24, 43, 0.98), rgba(11, 16, 32, 0.99));
+  box-shadow: var(--tools-shadow);
+}
+
+.eyebrow,
+.footerLabel {
+  color: var(--tools-label);
+}
+
+.toneChip {
+  color: var(--tools-text-soft);
+  background:
+    linear-gradient(180deg, rgba(245, 241, 232, 0.04), transparent 42%),
+    rgba(18, 24, 43, 0.88);
+  border-color: var(--tools-border);
+}
+
+.title {
+  color: var(--tools-text);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.quote,
+.footerText {
+  color: var(--tools-text-soft);
+}
+
+.footer {
+  border-top-color: rgba(66, 83, 119, 0.56);
+}
