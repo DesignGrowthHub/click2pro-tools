@@ -1,0 +1,269 @@
+.stack {
+  display: grid;
+  gap: 18px;
+  margin: 0 0 28px;
+}
+
+.reveal {
+  display: block;
+}
+
+.sectionCard {
+  padding: 22px 22px 20px;
+  border-radius: 24px;
+  border: 1px solid var(--tools-border);
+  background:
+    radial-gradient(circle at top left, rgba(200, 168, 107, 0.12), transparent 34%),
+    linear-gradient(180deg, rgba(245, 241, 232, 0.045), transparent 30%),
+    linear-gradient(180deg, rgba(22, 31, 53, 0.98), rgba(18, 24, 43, 0.99));
+  box-shadow: var(--tools-shadow);
+}
+
+.header {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--tools-accent);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: var(--tools-text);
+  font-size: clamp(1.04rem, 2vw, 1.28rem);
+  line-height: 1.32;
+  letter-spacing: -0.02em;
+}
+
+.summary {
+  margin: 0;
+  max-width: 72ch;
+  color: var(--tools-text-soft);
+  font-size: 0.94rem;
+  line-height: 1.68;
+}
+
+.svgShell {
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 22px;
+  border: 1px solid rgba(66, 83, 119, 0.88);
+  background:
+    radial-gradient(circle at 22% 18%, rgba(124, 143, 184, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(245, 241, 232, 0.045), transparent 38%),
+    linear-gradient(180deg, rgba(11, 16, 32, 0.94), rgba(18, 24, 43, 0.98));
+}
+
+.svgShell::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(200, 168, 107, 0.08);
+  pointer-events: none;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.connectorPath,
+.trackBar {
+  fill: none;
+  stroke: rgba(200, 168, 107, 0.48);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.72;
+  stroke-dasharray: 900;
+  stroke-dashoffset: 900;
+}
+
+.trackBar {
+  stroke: rgba(66, 83, 119, 0.88);
+  opacity: 1;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+}
+
+.centerNode,
+.nodeGroup,
+.sequenceGroup,
+.stackGroup,
+.peakPill,
+.basePill {
+  opacity: 0;
+  transform: translateY(18px) scale(0.98);
+}
+
+.sequenceDot {
+  fill: var(--tools-accent);
+  opacity: 0.88;
+}
+
+.centerPulse,
+.anchorDot,
+.stackGuideEdge {
+  fill: rgba(200, 168, 107, 0.94);
+}
+
+.anchorDot,
+.stackGuideEdge {
+  fill: rgba(124, 143, 184, 0.96);
+}
+
+.sequenceStem,
+.stackGuide {
+  fill: none;
+  stroke: rgba(66, 83, 119, 0.72);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+
+.stackGuide {
+  stroke: rgba(200, 168, 107, 0.28);
+  stroke-width: 1.4;
+}
+
+.haloRing,
+.haloRingInner {
+  fill: none;
+  stroke: rgba(66, 83, 119, 0.6);
+  stroke-width: 1;
+  opacity: 0.35;
+}
+
+.haloRingInner {
+  stroke: rgba(200, 168, 107, 0.16);
+  opacity: 0.5;
+}
+
+.centerLabel,
+.nodeLabel,
+.sequenceLabel,
+.stackLabel,
+.peakLabel,
+.baseLabel {
+  fill: var(--tools-text);
+  font-size: 12.8px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  text-anchor: middle;
+}
+
+.centerCaption,
+.nodeCaption,
+.sequenceCaption,
+.stackCaption {
+  fill: var(--tools-text-soft);
+  font-size: 9.8px;
+  font-weight: 450;
+  text-anchor: middle;
+}
+
+.stepNumber {
+  fill: rgba(200, 168, 107, 0.96);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-anchor: middle;
+}
+
+.isVisible .connectorPath {
+  animation: tool-infographic-stroke 900ms cubic-bezier(0.2, 1, 0.32, 1) forwards;
+}
+
+.isVisible .centerNode,
+.isVisible .nodeGroup,
+.isVisible .sequenceGroup,
+.isVisible .stackGroup,
+.isVisible .peakPill,
+.isVisible .basePill {
+  animation: tool-infographic-reveal 700ms cubic-bezier(0.2, 1, 0.32, 1) forwards;
+  animation-delay: calc(var(--order, 0) * 110ms);
+}
+
+@keyframes tool-infographic-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes tool-infographic-stroke {
+  from {
+    stroke-dashoffset: 900;
+    opacity: 0.12;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+    opacity: 0.72;
+  }
+}
+
+@media (max-width: 900px) {
+  .sectionCard {
+    padding: 20px 18px 18px;
+  }
+
+  .svgShell {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 720px) {
+  .stack {
+    gap: 16px;
+  }
+
+  .sectionCard {
+    padding: 18px 16px 16px;
+    border-radius: 22px;
+  }
+
+  .header {
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .summary {
+    font-size: 0.9rem;
+    line-height: 1.62;
+  }
+
+  .svgShell {
+    border-radius: 20px;
+  }
+
+  .centerLabel,
+  .nodeLabel,
+  .sequenceLabel,
+  .stackLabel,
+  .peakLabel,
+  .baseLabel {
+    font-size: 12px;
+  }
+
+  .centerCaption,
+  .nodeCaption,
+  .sequenceCaption,
+  .stackCaption {
+    font-size: 9.2px;
+  }
+}
