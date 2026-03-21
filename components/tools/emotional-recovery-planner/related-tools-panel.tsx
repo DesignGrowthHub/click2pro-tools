@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { ToolAssessmentLinks } from "@/components/tools/tool-assessment-links";
-import { ToolSupportLinks } from "@/components/tools/tool-support-links";
+import { ToolLowerPageAdditions } from "@/components/tools/tool-lower-page-additions";
 import type { RelatedRecoveryTool } from "@/data/emotional-recovery-planner";
 import { ArrowUpRightIcon, renderIcon } from "@/components/tools/icons";
 import styles from "./emotional-recovery-planner.module.css";
@@ -12,8 +11,7 @@ type RelatedToolsPanelProps = {
 export function RelatedToolsPanel({ tools }: RelatedToolsPanelProps) {
   return (
     <>
-      <ToolAssessmentLinks />
-      <ToolSupportLinks />
+      <ToolLowerPageAdditions />
 
       <div className={styles.relatedGrid}>
         {tools.map((tool) => (
