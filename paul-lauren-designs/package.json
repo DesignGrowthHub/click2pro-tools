@@ -4,7 +4,9 @@
   "private": true,
   "description": "Static, image-led website for Paul Lauren Designs (paullaurendesigns.com). Zero runtime dependencies.",
   "type": "module",
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "build": "node build.mjs",
     "serve": "node scripts/serve.mjs",
@@ -13,6 +15,7 @@
     "fetch:instagram": "bash scripts/fetch-instagram.sh",
     "film": "node scripts/make-film.mjs",
     "check": "node scripts/check.mjs",
-    "shots": "node scripts/screenshots.mjs"
+    "shots": "node scripts/screenshots.mjs",
+    "preview": "node build.mjs && node scripts/make-preview.mjs"
   }
 }
