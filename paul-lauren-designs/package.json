@@ -1,0 +1,18 @@
+{
+  "name": "paul-lauren-designs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static, image-led website for Paul Lauren Designs (paullaurendesigns.com). Zero runtime dependencies.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "dev": "node build.mjs && node scripts/serve.mjs",
+    "fetch:live": "node scripts/fetch-live-assets.mjs",
+    "fetch:instagram": "bash scripts/fetch-instagram.sh",
+    "film": "node scripts/make-film.mjs",
+    "check": "node scripts/check.mjs",
+    "shots": "node scripts/screenshots.mjs"
+  }
+}

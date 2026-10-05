@@ -1,0 +1,4 @@
+node_modules/
+.cache/
+# Large source media pulled by the fetch scripts live in assets/ and are committed
+# deliberately; nothing else to ignore.

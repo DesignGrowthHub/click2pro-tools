@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Paul Lauren Designs Journal</title>
+  <link>https://paullaurendesigns.com/journal/</link>
+  <atom:link href="https://paullaurendesigns.com/journal/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Scottsdale interior design studio led by Lauren Rautbord — serene, uncluttered, quietly luxurious homes.</description>
+  <language>en-us</language>
+  <item>
+    <title>Designing for Desert Light: How to Let a Scottsdale Home Breathe</title>
+    <link>https://paullaurendesigns.com/journal/designing-for-desert-light/</link>
+    <guid>https://paullaurendesigns.com/journal/designing-for-desert-light/</guid>
+    <pubDate>Tue, 08 Sep 2026 12:00:00 GMT</pubDate>
+    <category>Desert Living</category>
+    <description>How light, heat and views shape a serene Scottsdale interior, with practical guidance on palettes, fabrics, window treatments and materials for desert homes.</description>
+  </item>
+  <item>
+    <title>The Quiet Luxury of a Neutral Palette</title>
+    <link>https://paullaurendesigns.com/journal/the-quiet-luxury-of-a-neutral-palette/</link>
+    <guid>https://paullaurendesigns.com/journal/the-quiet-luxury-of-a-neutral-palette/</guid>
+    <pubDate>Tue, 18 Aug 2026 12:00:00 GMT</pubDate>
+    <category>Design Notes</category>
+    <description>Why a neutral palette is anything but boring: how to layer warm whites, stone, wood and texture into an interior that feels sumptuous, calm and timeless.</description>
+  </item>
+  <item>
+    <title>Furnishing a Second Home: Mountain Cabins, Lake Houses &amp; Desert Retreats</title>
+    <link>https://paullaurendesigns.com/journal/turnkey-second-homes/</link>
+    <guid>https://paullaurendesigns.com/journal/turnkey-second-homes/</guid>
+    <pubDate>Tue, 21 Jul 2026 12:00:00 GMT</pubDate>
+    <category>Second Homes</category>
+    <description>How to design and fully outfit a second home, whether a mountain cabin, lake house or desert retreat, so it&#39;s ready the day you arrive.</description>
+  </item>
+  <item>
+    <title>What to Expect When Working With a Luxury Interior Designer</title>
+    <link>https://paullaurendesigns.com/journal/working-with-a-luxury-interior-designer/</link>
+    <guid>https://paullaurendesigns.com/journal/working-with-a-luxury-interior-designer/</guid>
+    <pubDate>Tue, 30 Jun 2026 12:00:00 GMT</pubDate>
+    <category>The Process</category>
+    <description>A step-by-step look at a full-service interior design project, from the first conversation and concept through procurement, installation and the reveal.</description>
+  </item>
+</channel>
+</rss>
