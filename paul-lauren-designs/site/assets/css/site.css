@@ -426,6 +426,24 @@ a:has(> .ph), a:has(.ph) { text-decoration: none; }
 .studio-hero__text { grid-column: 7 / span 6; padding-bottom: 2vw; }
 .studio-hero__text .display { margin-bottom: 2rem; }
 
+.studio-hero--flip { padding-top: 0; }
+.studio-hero--flip .studio-hero__media { grid-column: 8 / span 5; grid-row: 1; }
+.studio-hero--flip .studio-hero__text { grid-column: 1 / span 6; grid-row: 1; }
+.studio-hero--flip .studio-hero__text p:not(.lead):not(.eyebrow) { color: var(--ink-2); max-width: 36em; }
+.studio-hero--flip .lead { margin-bottom: 1.4rem; }
+
+/* Home: the designers */
+.designers { padding: 0 0 var(--section); scroll-margin-top: var(--header-h); }
+.designers__grid { max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 7vw, 120px); align-items: start; }
+.designer--offset { margin-top: clamp(48px, 12vw, 200px); }
+.designer__media { display: block; aspect-ratio: 4 / 5; overflow: hidden; margin-bottom: 1.8rem; background: var(--bg-2); text-decoration: none; }
+.designer__media img, .designer__media .ph { width: 100%; height: 100%; object-fit: cover; aspect-ratio: auto; transition: transform 1.8s var(--ease); }
+.designer:hover .designer__media img { transform: scale(1.03); }
+.designer .eyebrow { margin-bottom: 0.7rem; }
+.designer__name { font-family: var(--serif); font-weight: 300; font-size: var(--fs-display-3); line-height: 1.1; margin-bottom: 0.9rem; }
+.designer__name a { text-decoration: none; }
+.designer__bio { color: var(--ink-2); max-width: 30em; }
+
 .prose-split { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter) var(--section); display: grid; grid-template-columns: repeat(12, 1fr); column-gap: clamp(16px, 2vw, 32px); }
 .prose-split__aside { grid-column: 1 / span 4; }
 .prose-split__body { grid-column: 6 / span 7; }
@@ -622,6 +640,8 @@ a:has(> .ph), a:has(.ph) { text-decoration: none; }
   .philosophy__media { margin-bottom: 48px; }
   .project-intro .facts, .prose-split__aside { margin-bottom: 48px; }
   .studio-hero__media { margin-bottom: 40px; }
+  .designers__grid { grid-template-columns: 1fr; gap: 64px; }
+  .designer--offset { margin-top: 0; }
   .service__media { margin-bottom: 36px; }
   .step__num { margin-bottom: 1rem; }
   .contact-form { margin-top: 56px; }

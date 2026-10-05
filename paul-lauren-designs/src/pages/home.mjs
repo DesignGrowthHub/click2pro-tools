@@ -1,6 +1,6 @@
 import { site } from "../site.config.mjs";
 import { esc, html, pad2, formatDate } from "../lib/html.mjs";
-import { organizationNode, personNode, websiteNode, webPageNode, abs } from "../lib/seo.mjs";
+import { organizationNode, personNode, partnerNode, websiteNode, webPageNode, abs } from "../lib/seo.mjs";
 import { ctaBand, instagramGrid, pressStrip, projectAlt, projectMeta } from "../templates/components.mjs";
 
 function hero(ctx, still) {
@@ -32,7 +32,7 @@ function hero(ctx, still) {
       <span class="hero__line">Serene interiors,</span>
       <span class="hero__line"><em>quietly luxurious.</em></span>
     </h1>
-    <p class="hero__by">The studio of Lauren Rautbord</p>
+    <p class="hero__by">Lauren Rautbord &amp; Kendra Vaughn</p>
   </div>
   <div class="hero__foot">
     <a class="hero__scroll" href="#intro"><span>Scroll</span></a>
@@ -82,8 +82,30 @@ ${hero(ctx, still)}
 
 <section class="statement" id="intro">
   <p class="eyebrow reveal">The Studio</p>
-  <p class="statement__text reveal">For more than thirty years, Lauren Rautbord has designed homes that feel like a deep breath: <em>uncluttered sanctuaries</em> of sumptuous fabrics, refined neutral palettes and furnishings full of warmth and personality.</p>
-  <a class="link-arrow reveal" href="/studio/">Meet Lauren</a>
+  <p class="statement__text reveal">Led by Lauren Rautbord and partner Kendra Vaughn, Paul Lauren Designs creates homes that feel like a deep breath: <em>uncluttered sanctuaries</em> of sumptuous fabrics, refined neutral palettes and furnishings full of warmth and personality.</p>
+  <a class="link-arrow reveal" href="#designers">Meet the designers</a>
+</section>
+
+<section class="designers" id="designers" aria-labelledby="designers-title">
+  <div class="section-head section-head--split">
+    <div>
+      <p class="eyebrow">The Designers</p>
+      <h2 class="display-2" id="designers-title">Two designers, <em>one point of view</em></h2>
+    </div>
+    <a class="link-arrow" href="/studio/">About the studio</a>
+  </div>
+  <div class="designers__grid">
+    ${ctx.team.map((m, i) => {
+      const rec = i === 0 ? ctx.media.record(ctx.manualPortrait) || ctx.media.pageImagesFor("/studio/").find((r) => r.height > r.width) || null : ctx.media.record(ctx.partnerPortrait);
+      const href = i === 0 ? "/studio/" : `/studio/#${m.id}`;
+      return html`<article class="designer${i ? " designer--offset" : ""} reveal">
+        <a class="designer__media" href="${href}" tabindex="-1" aria-hidden="true">${ctx.media.img(rec, { alt: `${m.name}, ${m.role} at Paul Lauren Designs`, sizes: "(min-width: 900px) 40vw, 100vw", folder: "studio", name: `${m.id}-interior-designer-scottsdale`, ratio: 4 / 5, label: `Portrait of ${m.name}` })}</a>
+        <p class="eyebrow">${esc(m.role)}</p>
+        <h3 class="designer__name"><a href="${href}">${esc(m.name)}</a></h3>
+        <p class="designer__bio">${esc(m.short)}</p>
+      </article>`;
+    })}
+  </div>
 </section>
 
 <section class="selected" aria-labelledby="selected-title">
@@ -166,6 +188,7 @@ ${ctaBand(ctx, { image: ctaImg })}
   const jsonld = [
     organizationNode({ logoUrl: ctx.logoUrl, imageUrl: heroPub?.original, services: ctx.services }),
     personNode(),
+    partnerNode(),
     websiteNode(),
     webPageNode({ url: "/", title: `${site.name} — ${site.tagline}`, description: site.description, image: heroPub?.original }),
     ctx.heroVideo && {
@@ -183,7 +206,7 @@ ${ctaBand(ctx, { image: ctaImg })}
     url: "/",
     title: `${site.name} | Luxury Interior Designer in Scottsdale, AZ`,
     description:
-      "The Scottsdale interior design studio of Lauren Rautbord: serene, uncluttered, quietly luxurious homes across Arizona, Chicago and the Mountain West.",
+      "The Scottsdale interior design studio of Lauren Rautbord and Kendra Vaughn: serene, uncluttered, quietly luxurious homes across Arizona, Chicago and the West.",
     headerMode: "overlay",
     bodyClass: "page-home",
     preload,

@@ -5,6 +5,7 @@ import { site } from "../site.config.mjs";
 
 const ORG = `${site.url}/#organization`;
 const PERSON = `${site.url}/#lauren-rautbord`;
+const PARTNER = `${site.url}/#kendra-vaughn`;
 const WEBSITE = `${site.url}/#website`;
 
 export const abs = (p) => (/^https?:/.test(p) ? p : `${site.url}${p.startsWith("/") ? "" : "/"}${p}`);
@@ -35,7 +36,7 @@ export function organizationNode({ logoUrl, imageUrl, services = [] } = {}) {
     hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${site.name}, ${site.address.street}, ${site.address.city}, ${site.address.region} ${site.address.postal}`)}`,
     areaServed: site.areaServed.map((name) => ({ "@type": "Place", name })),
     founder: { "@id": PERSON },
-    employee: { "@id": PERSON },
+    employee: [{ "@id": PERSON }, { "@id": PARTNER }],
     knowsAbout: [
       "Interior design",
       "Luxury residential interior design",
@@ -75,6 +76,20 @@ export function personNode({ imageUrl } = {}) {
     knowsAbout: ["Interior design", "Luxury residential interiors", "Textiles and upholstery", "Vintage and contemporary furniture"],
     description: `Principal designer and founder of ${site.name}, with ${site.founder.experience} of interior design experience in Chicago and Scottsdale.`,
     url: abs("/studio/"),
+    ...(imageUrl ? { image: abs(imageUrl) } : {}),
+  };
+}
+
+export function partnerNode({ imageUrl } = {}) {
+  return {
+    "@type": "Person",
+    "@id": PARTNER,
+    name: site.partner.name,
+    jobTitle: site.partner.jobTitle,
+    worksFor: { "@id": ORG },
+    knowsAbout: ["Interior design", "Luxury residential interiors", "Furniture and finish selection"],
+    description: `${site.partner.jobTitle} at ${site.name}, the Scottsdale interior design studio.`,
+    url: abs("/studio/#kendra-vaughn"),
     ...(imageUrl ? { image: abs(imageUrl) } : {}),
   };
 }
@@ -142,6 +157,6 @@ export function faqNode(url, faqs) {
   };
 }
 
-export const ids = { ORG, PERSON, WEBSITE };
+export const ids = { ORG, PERSON, PARTNER, WEBSITE };
 
 export const graph = (nodes) => JSON.stringify({ "@context": "https://schema.org", "@graph": nodes.filter(Boolean) }).replace(/</g, "\\u003c");

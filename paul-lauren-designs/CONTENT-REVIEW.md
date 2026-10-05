@@ -16,6 +16,7 @@ each item below. Most fixes are one-line edits in `src/site.config.mjs` or `src/
 | Lauren Rautbord: principal designer and founder, **30+ years** experience | Live Studio page (via search) | ☐ |
 | Trained at the **Harrington School of Design**, Chicago | Live Studio page (via search) | ☐ |
 | Founded with **the late Paul Marchetti**, a leading Chicago style maker | Live Studio page (via search) | ☐ wording OK? |
+| **Kendra Vaughn, Partner**: surname spelling, title wording ("Partner"), and her bio in `src/content/studio.mjs` → `team` | Surname from her professional profile | ☐ |
 | Quote: "The day I am delegating design decisions…" | Published interview / live site | ☐ |
 | Service areas list (Scottsdale, Paradise Valley, Phoenix, Silverleaf & DC Ranch, Chicago, Wilmette & North Shore, Aspen, Sun Valley, Coeur d'Alene, Pacific Palisades) | Project names, plus Paradise Valley and DC Ranch assumed | ☐ |
 
@@ -54,7 +55,7 @@ Four original articles, written as drafts for Lauren's voice and review:
 
 - **Logo**: an interim typographic wordmark is shown until the real logo is pulled from the live site or placed in `assets/brand/logo.svg`. ☐
 - **Favicon**: interim "PL" monogram (`src/assets/favicon.svg`). Replace with the brand mark if one exists. ☐
-- **Portrait of Lauren** for the Studio page: `assets/brand/lauren-rautbord.jpg`. ☐
+- **Portraits** for the home page "The Designers" section and the Studio page: `assets/brand/lauren-rautbord.jpg` and `assets/brand/kendra-vaughn.jpg`. ☐
 
 ## 7. Legal
 
@@ -63,4 +64,4 @@ Four original articles, written as drafts for Lauren's voice and review:
 
 ## 8. Not included (decide)
 
-- Team members (e.g. other designers) and client testimonials were not added because none could be verified. Send them over if wanted. ☐
+- Other team members and client testimonials were not added because none could be verified. Send them over if wanted. ☐

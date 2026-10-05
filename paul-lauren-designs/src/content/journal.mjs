@@ -142,7 +142,7 @@ export const articles = [
     keyTakeaways: [
       "The best projects start with honest conversations about lifestyle, timeline and investment.",
       "Expect a concept, then detailed design development, then procurement. Each stage builds on the last.",
-      "Ask who will actually design your home. At Paul Lauren Designs it is the principal, personally.",
+      "Ask who will actually design your home. At Paul Lauren Designs it is Lauren and Kendra, personally.",
     ],
     sections: [
       {

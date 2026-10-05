@@ -28,12 +28,33 @@ export const philosophy = {
   ],
 };
 
+// The designers. Portraits: assets/brand/<id>.jpg (see README).
+export const team = [
+  {
+    id: "lauren-rautbord",
+    name: "Lauren Rautbord",
+    role: "Founder & Principal Designer",
+    short: "Founder of the studio, with more than thirty years of designing serene, quietly luxurious homes, first in Chicago and now from Scottsdale.",
+  },
+  {
+    id: "kendra-vaughn",
+    name: "Kendra Vaughn",
+    role: "Partner",
+    short: "Partner in the studio, Kendra guides projects alongside Lauren from first concept to final installation, with an eye for calm, livable luxury.",
+    bio: [
+      "Kendra Vaughn is a partner at Paul Lauren Designs, working alongside Lauren on the studio's homes from the first conversation to the final styled room.",
+      "She shares the studio's conviction that a home should feel like a deep breath: edited, sumptuous and made to be lived in. Clients work closely with Kendra through every stage, from plans and finish selections to furnishings, procurement and installation.",
+      "Together, Lauren and Kendra keep the studio deliberately personal. Every project is led by its designers and never handed off.",
+    ],
+  },
+];
+
 export const services = [
   {
     id: "full-service",
     title: "Full-Service Interior Design",
     lede: "From the first conversation to the final pillow, one designer guiding every decision.",
-    text: "Space planning, interior architecture and finish selections, custom furnishings, lighting, window treatments, art and accessories, all designed, specified and managed by the studio, with Lauren personally involved in every selection.",
+    text: "Space planning, interior architecture and finish selections, custom furnishings, lighting, window treatments, art and accessories, all designed, specified and managed by the studio, with Lauren and Kendra personally involved in every selection.",
     includes: ["Space planning & furniture layouts", "Finish, fixture & material selections", "Custom furniture & upholstery", "Lighting & window treatments", "Art & accessory curation"],
   },
   {
@@ -123,8 +144,8 @@ export const press = [
 
 export const faqs = [
   {
-    q: "Who is the designer behind Paul Lauren Designs?",
-    a: `Paul Lauren Designs is led by principal designer and founder Lauren Rautbord, who has ${site.founder.experience} of interior design experience. She trained at the Harrington School of Design in Chicago and founded the firm with ${site.founder.cofounder}.`,
+    q: "Who are the designers behind Paul Lauren Designs?",
+    a: `Paul Lauren Designs is led by founder and principal designer Lauren Rautbord, who has ${site.founder.experience} of interior design experience, and partner ${site.partner.name}. Lauren trained at the Harrington School of Design in Chicago and founded the firm with ${site.founder.cofounder}.`,
   },
   {
     q: "Where is Paul Lauren Designs located?",
@@ -147,8 +168,8 @@ export const faqs = [
     a: "Yes. Many projects are vacation and second homes, including mountain cabins, lake houses and desert retreats. The studio can design and fully outfit a home so it is ready to live in on arrival.",
   },
   {
-    q: "How involved is Lauren in each project?",
-    a: "Personally involved in every project. The studio stays deliberately small so that design decisions are never delegated or made 'off the shelf'. Clients work directly with the designer.",
+    q: "Will I work directly with the designers?",
+    a: "Yes. The studio stays deliberately small so that clients work directly with Lauren and Kendra, and design decisions are never delegated or made 'off the shelf'.",
   },
   {
     q: "How does the design process work?",

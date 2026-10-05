@@ -10,9 +10,9 @@ export const site = {
   language: "en",
   tagline: "Serene, quietly luxurious interiors",
   description:
-    "Paul Lauren Designs is a Scottsdale, Arizona interior design studio led by principal designer Lauren Rautbord, creating serene, uncluttered and quietly luxurious homes across Arizona, Chicago and the Mountain West.",
+    "Paul Lauren Designs is a Scottsdale, Arizona interior design studio led by principal designer Lauren Rautbord and partner Kendra Vaughn, creating serene, uncluttered and quietly luxurious homes across Arizona, Chicago and the Mountain West.",
   shortDescription:
-    "Scottsdale interior design studio led by Lauren Rautbord — serene, uncluttered, quietly luxurious homes.",
+    "Scottsdale interior design studio led by Lauren Rautbord and Kendra Vaughn — serene, uncluttered, quietly luxurious homes.",
 
   founder: {
     name: "Lauren Rautbord",
@@ -20,6 +20,11 @@ export const site = {
     experience: "more than 30 years",
     education: "Harrington School of Design, Chicago",
     cofounder: "the late Paul Marchetti, one of Chicago's leading style makers for decades",
+  },
+
+  partner: {
+    name: "Kendra Vaughn",
+    jobTitle: "Partner",
   },
 
   phone: "480-664-6765",

@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 
 import { site, fullAddress } from "./src/site.config.mjs";
 import { projects as projectList, featuredSlugs, regions } from "./src/content/projects.mjs";
-import { services, process as processSteps, press, faqs, philosophy } from "./src/content/studio.mjs";
+import { services, process as processSteps, press, faqs, philosophy, team } from "./src/content/studio.mjs";
 import { articles as articleList } from "./src/content/journal.mjs";
 import { createMedia } from "./src/lib/media.mjs";
 import { esc } from "./src/lib/html.mjs";
@@ -80,7 +80,9 @@ const logoPub = logo ? media.publish(logo, { folder: "brand", name: "paul-lauren
 const heroVideo = media.heroVideo();
 const ogFallback = featuredProjects.find((p) => p.images[0])?.images[0] || fallbackGallery[0];
 const ogPub = ogFallback ? media.publish(ogFallback, { folder: "home", name: "paul-lauren-designs-scottsdale-interior-design" }) : null;
-const manualPortrait = ["jpg", "jpeg", "png", "webp"].map((e) => path.join(ROOT, `assets/brand/lauren-rautbord.${e}`)).find((f) => fs.existsSync(f)) || null;
+const portraitFile = (id) => ["jpg", "jpeg", "png", "webp"].map((e) => path.join(ROOT, `assets/brand/${id}.${e}`)).find((f) => fs.existsSync(f)) || null;
+const manualPortrait = portraitFile("lauren-rautbord");
+const partnerPortrait = portraitFile("kendra-vaughn");
 
 const featuredHeadings = (live["/featured/"]?.headings || []).filter((h) => h.level >= 2).map((h) => h.text);
 const featuredImgCount = media.pageImagesFor("/featured/").filter((r) => r.width >= 300).length;
@@ -106,6 +108,8 @@ const ctx = {
   logoUrl: logoPub?.original,
   heroVideo,
   manualPortrait,
+  partnerPortrait,
+  team,
   featuredLiveHeadings: featuredHeadings.length === featuredImgCount ? featuredHeadings : [],
   defaultOgImage: ogPub ? { url: ogPub.original, width: ogFallback.width, height: ogFallback.height, alt: `${site.name} — ${site.tagline}` } : null,
 };
@@ -205,6 +209,7 @@ fs.writeFileSync(
 - Principal designer & founder: ${site.founder.name}
 - Experience: ${site.founder.experience} in interior design
 - Training: ${site.founder.education}
+- Partner: ${site.partner.name}
 - Founded with: ${site.founder.cofounder}
 - Address: ${fullAddress()}
 - Phone: ${site.phone}
@@ -217,7 +222,7 @@ fs.writeFileSync(
 ## Main pages
 - [Home](${site.url}/): overview of the studio and selected work
 - [Portfolio](${site.url}/portfolio/): ${projects.length} residential projects
-- [Studio](${site.url}/studio/): Lauren Rautbord's background and philosophy
+- [Studio](${site.url}/studio/): Lauren Rautbord and partner Kendra Vaughn, background and philosophy
 - [Services](${site.url}/services/): full-service design, new construction & renovation, furnishing, second homes
 - [Process](${site.url}/process/): the six-stage design process
 - [Featured](${site.url}/featured/): press, including Phoenix Home & Garden

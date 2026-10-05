@@ -1,6 +1,6 @@
 import { site, fullAddress } from "../site.config.mjs";
 import { esc, html, pad2 } from "../lib/html.mjs";
-import { breadcrumbNode, faqNode, webPageNode, personNode, organizationNode, abs, ids } from "../lib/seo.mjs";
+import { breadcrumbNode, faqNode, webPageNode, personNode, partnerNode, organizationNode, abs, ids } from "../lib/seo.mjs";
 import { regions } from "../content/projects.mjs";
 import { breadcrumbs, ctaBand, facts, pageIntro, pressStrip, projectAlt } from "../templates/components.mjs";
 
@@ -22,10 +22,24 @@ export function renderStudio(ctx) {
   </div>
 </section>
 
+${(() => {
+  const k = ctx.team[1];
+  const rec = ctx.media.record(ctx.partnerPortrait);
+  return html`<section class="studio-hero studio-hero--flip" id="${k.id}">
+  <div class="studio-hero__media reveal">${ctx.media.img(rec, { alt: `${k.name}, ${k.role} at Paul Lauren Designs`, sizes: "(min-width: 900px) 42vw, 100vw", folder: "studio", name: `${k.id}-interior-designer-scottsdale`, ratio: 4 / 5, label: `Portrait of ${k.name}` })}</div>
+  <div class="studio-hero__text">
+    <p class="eyebrow">${esc(k.role)}</p>
+    <h2 class="display">${esc(k.name)}</h2>
+    ${k.bio.map((t, i) => `<p${i === 0 ? ' class="lead"' : ""}>${esc(t)}</p>`)}
+  </div>
+</section>`;
+})()}
+
 <section class="prose-split">
   <div class="prose-split__aside">
     ${facts([
       ["Principal designer", "Lauren Rautbord"],
+      ["Partner", "Kendra Vaughn"],
       ["Experience", "30+ years in interior design"],
       ["Trained", "Harrington School of Design, Chicago"],
       ["Founded with", "The late Paul Marchetti, a celebrated Chicago style maker"],
@@ -38,7 +52,7 @@ export function renderStudio(ctx) {
     <h2 class="display-3">A studio that stays personal</h2>
     <p>Paul Lauren Designs began in Chicago, where Lauren founded the firm with the late Paul Marchetti, for decades one of the city's leading style makers. Lauren trained at the Harrington School of Design and built a loyal clientele across the Upper Midwest before bringing the studio to Scottsdale, where it now designs homes throughout the Valley and in mountain and lake towns across the West.</p>
     <p>Her rooms are recognizable for their calm. Luxurious fabrics, refined neutral palettes and furnishings full of warmth and personality come together in spaces that are sophisticated but never fussy. Vintage and contemporary pieces sit easily side by side. Lauren holds that less is always more and that a home's views should be embraced and enjoyed.</p>
-    <p>The studio is deliberately small. Every client works directly with Lauren, and every selection is considered, never hurried or made off the shelf.</p>
+    <p>The studio is deliberately small. Every client works directly with Lauren and Kendra, and every selection is considered, never hurried or made off the shelf.</p>
   </div>
 </section>
 
@@ -63,14 +77,15 @@ ${ctaBand(ctx, { image: ctx.fallbackGallery[3] })}
 `;
   return {
     url: "/studio/",
-    title: "About Lauren Rautbord, Scottsdale Interior Designer",
+    title: "The Studio: Lauren Rautbord & Kendra Vaughn",
     description:
-      "Meet Lauren Rautbord, principal of Paul Lauren Designs: 30+ years designing serene, quietly luxurious interiors, from Chicago roots to her Scottsdale studio.",
+      "Meet Lauren Rautbord, founder and principal designer, and partner Kendra Vaughn: the designers behind Paul Lauren Designs' serene, luxurious Scottsdale interiors.",
     bodyClass: "page-studio",
     ogImage: portraitPub ? { url: portraitPub.original, width: portrait.width, height: portrait.height, alt: "Lauren Rautbord" } : null,
     jsonld: [
       webPageNode({ url: "/studio/", type: "AboutPage", title: "The Studio", description: "About Lauren Rautbord and Paul Lauren Designs.", breadcrumb: true, extra: { mainEntity: { "@id": ids.PERSON } } }),
       personNode({ imageUrl: portraitPub?.original }),
+      partnerNode(),
       organizationNode({ logoUrl: ctx.logoUrl }),
       breadcrumbNode("/studio/", crumb("Studio", "/studio/")),
     ],
@@ -185,7 +200,7 @@ ${pageIntro({
   trail: crumb("FAQ", "/faq/"),
   eyebrow: "FAQ",
   title: "Questions, <em>answered</em>",
-  lede: "About the studio, Lauren's approach and how a project works. Can't find what you're looking for? <a href=\"/contact/\">Ask us directly.</a>",
+  lede: "About the studio, its designers and how a project works. Can't find what you're looking for? <a href=\"/contact/\">Ask us directly.</a>",
 })}
 <section class="faq-page">${faqList(ctx.faqs)}</section>
 ${ctaBand(ctx, { image: ctx.fallbackGallery[7] })}
@@ -328,6 +343,7 @@ ${pageIntro({
       ["Phone", `<a href="tel:${site.phoneE164}">${site.phone}</a>`],
       ["Email", `<a href="mailto:${site.email}">${site.email}</a>`],
       ["Principal", "Lauren Rautbord, 30+ years"],
+      ["Partner", "Kendra Vaughn"],
       ["Valley projects", az.map((p) => `<a href="${p.path}">${esc(p.title)}</a>`).join("<br>")],
     ])}
   </div>
@@ -355,7 +371,7 @@ ${ctaBand(ctx, { title: "Designing a home in Scottsdale?", image: az[1]?.images[
     url: "/scottsdale-interior-designer/",
     title: "Scottsdale Interior Designer | Luxury Interior Design Studio",
     description:
-      "Luxury interior design studio in North Scottsdale. Lauren Rautbord designs serene new builds, renovations and fully furnished homes across the Valley.",
+      "Luxury interior design studio in North Scottsdale. Lauren Rautbord and Kendra Vaughn design serene new builds, renovations and furnished homes across the Valley.",
     bodyClass: "page-local",
     jsonld: [
       webPageNode({ url: "/scottsdale-interior-designer/", title: "Scottsdale Interior Designer", description: "Luxury interior design in Scottsdale, AZ.", breadcrumb: true }),

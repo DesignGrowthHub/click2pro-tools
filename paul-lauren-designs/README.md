@@ -70,7 +70,8 @@ Without that file the newest images are used.
 | `assets/projects/<project-slug>/` | That project's gallery, in filename order (`01.jpg`, `02.jpg`…) |
 | `assets/brand/logo.svg` (or `.png`) | Header and footer logo (inverted to white over imagery automatically) |
 | `assets/brand/logo-light.svg` | Optional dedicated light logo |
-| `assets/brand/lauren-rautbord.jpg` | Lauren's portrait on the Studio page |
+| `assets/brand/lauren-rautbord.jpg` | Lauren's portrait (home page "The Designers" and Studio page) |
+| `assets/brand/kendra-vaughn.jpg` | Kendra's portrait (home page "The Designers" and Studio page) |
 | `assets/press/<Outlet Name>.svg/png` | Press logos for "As featured in" (filename = outlet name) |
 | `assets/video/hero.mp4` | A hero video you supply |
 
