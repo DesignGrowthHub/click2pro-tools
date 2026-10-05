@@ -136,6 +136,15 @@ See **CONTENT-REVIEW.md** for every statement the studio should confirm before l
 - **Any host / WordPress replacement**: upload `site/`. Translate `_redirects` into the host's redirect rules.
 - Set `formEndpoint` in `src/site.config.mjs` (Formspree, Basin, Netlify Forms, etc.). Without it, the form opens the visitor's email app addressed to the studio.
 
+## Previews you can open on any PC
+
+```bash
+npm run preview:single   # preview/paul-lauren-designs.html: the whole site in ONE file, double-click to open
+npm run preview          # preview/paul-lauren-designs-preview.zip: folder version, open index.html
+```
+
+The single file inlines everything, so it suits review rounds. Once the full photography is in it gets large; share the zip or deploy `site/` instead.
+
 ## QA tools
 
 ```bash

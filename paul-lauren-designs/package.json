@@ -16,6 +16,7 @@
     "film": "node scripts/make-film.mjs",
     "check": "node scripts/check.mjs",
     "shots": "node scripts/screenshots.mjs",
-    "preview": "node build.mjs && node scripts/make-preview.mjs"
+    "preview": "node build.mjs && node scripts/make-preview.mjs",
+    "preview:single": "node build.mjs && node scripts/make-single-file.mjs"
   }
 }
