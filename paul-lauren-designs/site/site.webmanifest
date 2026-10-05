@@ -1,0 +1,21 @@
+{
+  "name": "Paul Lauren Designs",
+  "short_name": "Paul Lauren",
+  "description": "Scottsdale interior design studio led by Lauren Rautbord and Kendra Vaughn — serene, uncluttered, quietly luxurious homes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4efe7",
+  "theme_color": "#f4efe7",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
